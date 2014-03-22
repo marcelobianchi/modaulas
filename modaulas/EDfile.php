@@ -36,9 +36,12 @@ switch($action)
    if (!is_dir("$datadir/$tbpasta")) erro('Pasta não existe');
 
    $nomeoriginal=$HTTP_POST_FILES['tbarquivo']['name'];
+   if (empty($nomeoriginal)) erro('Nome inválido !');
    if (is_file("$datadir/$tbpasta/$nomeoriginal")) erro('Arquivo já existe !');
 
    $a=move_uploaded_file($HTTP_POST_FILES['tbarquivo']['tmp_name'],"$datadir/$tbpasta/$nomeoriginal");
+   if (!$a)
+     erro("Arquivo não pode ser armazenado, provável erro de mal-configuração do servidor, ou limite de upload ultrapassado !!");
  break; 
 
  case 'delarquivo':

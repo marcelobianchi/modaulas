@@ -1,4 +1,12 @@
 <?php
+
+if (!function_exists('mime_content_type')) {
+   function mime_content_type($f) {
+       $f = escapeshellarg($f);
+       return trim( `file -bi $f` );
+   }
+}
+
 function authme($passwd = '')
 { 
     session_start();

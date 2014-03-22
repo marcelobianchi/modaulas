@@ -1,10 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">                 
+<!-- Corrigido problema com o get_mime_type -->
 <HTML>
 <?php
   include('funcoes.php');
 ?>
 <HEAD>
- <title>ModAulas &gt;www.foo4fun.net&lt; </title>
+ <title><?php echo strtoupper($sigladadisciplina)." - ".ucwords($nomedadisciplina) ?></title>
  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
  <LINK rel="StyleSheet" href="style.css" type="text/css">
@@ -126,7 +127,6 @@ else
   $in="";
 ?>
 
-
 <P><TABLE BORDER WIDTH="100%" CELLPADDING=10 CELLSPACING=0><TR><TD>
 <P CLASS=SECTION>Calendário</P>
 <I><?php echo strftime("Hoje é %A, %d de %B de %Y\n",time()); ?></I>
@@ -154,13 +154,13 @@ foreach($in as $i => $a)
 <!-- Quadro de avisos -->
 <P><TABLE BORDER=1 WIDTH="100%" CELLPADDING=10 CELLSPACING=0><TR><TD>
 <P CLASS=SECTION>Quadro de Avisos</P>
-<?php 
- if(is_file($avisofile)) 
-  echo "
-  <IFRAME WIDTH=\"70%\" frameborder=0 src=\"GETavisos.php\">
-    O seu browser não suporta IFRAMES visualize os <A HREF=\"GETavisos.php\">avisos aqui</A>.
-  </IFRAME>";
-?>
+<?php if(is_file($avisofile)) { ?>
+  <CENTER>
+  <IFRAME FRAMEBORDER=1 WIDTH="80%" ALIGN=middle scrolling=auto height=200 src="GETavisos.php">
+    O seu browser não suporta IFRAMES visualize os <A HREF="GETavisos.php">avisos aqui</A>.
+  </IFRAME>
+  </CENTER>
+ <?php } ?>
 </TD></TR></TABLE></P>
 
 
@@ -181,8 +181,6 @@ foreach($in as $i => $a)
  }
 ?>
 </TD></TR></TABLE></P>
-
-
 
 
 <P><TABLE BORDER WIDTH="100%" CELLPADDING=10 CELLSPACING=0><TR><TD>
@@ -234,10 +232,10 @@ foreach($post as $i => $p)
     ?>
      <TR>
       <TD WIDTH="50">&nbsp;</TD>
-      <TD><FONT SIZE="-1"><?php echo "($mime)" ?></FONT></TD>
-      <TD WIDTH="500" CLASS=TABELA><?php echo (($comentario=='')?$f:$comentario) ?></TD>
-      <TD ALIGN="RIGHT"><?php echo $fsize ?></TD>
-      <TD>[<A HREF="<?php echo "$datadir/$p/$f"?>">Baixar</A>]</TD>
+      <TD WIDTH="70"><FONT SIZE="-1"><?php echo "($mime)" ?></FONT></TD>
+      <TD WIDTH="540" CLASS=TABELA><?php echo (($comentario=='')?$f:$comentario) ?></TD>
+      <TD WIDTH="80" ALIGN="RIGHT"><?php echo $fsize ?></TD>
+      <TD WIDTH="50">[<A HREF="<?php echo "$datadir/$p/$f"?>">Baixar</A>]</TD>
      </TR>
     <?php
    }

@@ -4,6 +4,9 @@
   $op=(isset($_GET['op']))?$_GET['op']:0;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">                 
+
+<!-- 14/02/2006. Corrigido problema com mês 02 no calendário -->
+
 <HTML>
 <HEAD>
  <title>ModAulas ADM &gt;www.foo4fun.net&lt;</title>
@@ -272,12 +275,11 @@ linha não quebre a linha no meio de uma mesma referência)</TD></TR>
      $maxday=30;
  } else
    {
-   if (checkdate(($month-1),29,$year))
+   if (checkdate($month,29,$year))
      $maxday=29;
    else 
      $maxday=28;
    }
-    
 ?>
 
 <P CLASS="SECTION">Calendário</P>
