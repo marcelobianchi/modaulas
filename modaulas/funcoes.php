@@ -53,13 +53,13 @@ function logmein(){
 echo '<HTML> 
    <HEAD>
      <TITLE>ModAulas Login Page</TITLE>
-     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
      <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
      <LINK rel="StyleSheet" href="style.css" type="text/css">
    </HEAD> 
    <BODY> 
     <CENTER>
-    <P CLASS="SECTION">Acesso Restrito<BR>Entrar senha de autenticação</P>
+    <P CLASS="SECTION">Acesso Restrito<BR>Entrar senha de autenticaÃ§Ã£o</P>
     <FORM ACTION="login.php" METHOD=POST>
      Senha: <INPUT TYPE="password" NAME="tbpassword">
      <INPUT TYPE="submit" VALUE="Entrar"> 
@@ -75,9 +75,9 @@ function verificatudo(){
  
  setlocale(LC_ALL,'pt_BR');
  if (!is_dir($datadir))
-  erro("Diretório &quot;$datadir&quot; não existe");
+  erro("DiretÃ³rio &quot;$datadir&quot; nÃ£o existe");
  if (!is_writable($datadir))
-  erro("Não posso escrever em &quot;$datadir&quot;");
+  erro("NÃ£o posso escrever em &quot;$datadir&quot;");
 }
 
 function changevariavel ($who, $value){
@@ -91,7 +91,7 @@ function changevariavel ($who, $value){
  $found=0;
 
  $fh=fopen($varfile,"w");
- if($fh==NULL) erro("Problema de permissões com o arquivo $varfile");
+ if($fh==NULL) erro("Problema de permissÃµes com o arquivo $varfile");
  fwrite($fh,"<?php\n");
 
  foreach($lines as $line)
@@ -122,7 +122,7 @@ echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
  <title>ModAulas ADM</title>
- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
  <LINK rel="StyleSheet" href="style.css" type="text/css">
 </HEAD>
@@ -141,7 +141,7 @@ function aviso($message,$pos){
 <HTML>
 <HEAD>
  <title>ModAulas ADM</title>
- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
  <LINK rel="StyleSheet" href="style.css" type="text/css">
  <meta http-equiv="refresh" content="4; URL=adm.php?op=<?echo $pos?>">
@@ -155,7 +155,7 @@ echo "<HR NOSHADE>\n";
 if($pos==0)
   echo "<P ALIGN=\"RIGHT\"><A HREF=\"adm.php\">Voltar</A></P>\n";
 else
-  echo "<P ALIGN=\"RIGHT\">Voce será redirecionado de volta em 4 segundos ! <BR> [<A HREF=\"adm.php?op=$pos\">Voltar</A>]</P>\n";
+  echo "<P ALIGN=\"RIGHT\">Voce serÃ¡ redirecionado de volta em 4 segundos ! <BR> [<A HREF=\"adm.php?op=$pos\">Voltar</A>]</P>\n";
 
 echo "
 </BODY>
@@ -211,7 +211,7 @@ function size_translate($filesize)
 }
 
 
-################## Começo Verdadeiro ########################################################
+################## ComeÃ§o Verdadeiro ########################################################
 
 $tablehorario=array("08:00 - 10:00","10:00 - 12:00","14:00 - 16:00","16:00 - 18:00", "19:00 - 21:00","21:00 - 23:00");
 $datadir="moddata/";

@@ -5,12 +5,12 @@
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">                 
 
-<!-- 14/02/2006. Corrigido problema com mês 02 no calendário -->
+<!-- 14/02/2006. Corrigido problema com mÃªs 02 no calendÃ¡rio -->
 
 <HTML>
 <HEAD>
  <title>ModAulas ADM &gt;www.foo4fun.net&lt;</title>
- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
  <LINK rel="StyleSheet" href="style.css" type="text/css">
 </HEAD>
@@ -37,10 +37,10 @@
 <TABLE CLASS="mastertable" CELLPADDING=0 CELLSPACING=0 WIDTH="97%">
 <TR ALIGN="CENTER">
  <TD WIDTH="15%" <?php if($op==1) echo "CLASS=set" ?>><A HREF="adm.php?op=1">NOME, SIGLA &amp;
- INFORMAÇÕES GERAIS </A></TD>
- <TD WIDTH="15%" <?php if($op==2) echo "CLASS=set" ?>><A HREF="adm.php?op=2">HORÁRIO</A></TD>
+ INFORMAÃ‡Ã•ES GERAIS </A></TD>
+ <TD WIDTH="15%" <?php if($op==2) echo "CLASS=set" ?>><A HREF="adm.php?op=2">HORÃRIO</A></TD>
  <TD WIDTH="15%" <?php if($op==3) echo "CLASS=set" ?>><A HREF="adm.php?op=3">EMENTA</A></TD>
- <TD WIDTH="15%" <?php if($op==4) echo "CLASS=set" ?>><A HREF="adm.php?op=4">CALENDÁRIO</A></TD>
+ <TD WIDTH="15%" <?php if($op==4) echo "CLASS=set" ?>><A HREF="adm.php?op=4">CALENDÃRIO</A></TD>
  <TD WIDTH="15%" <?php if($op==5) echo "CLASS=set" ?>><A HREF="adm.php?op=5">QUADRO DE AVISOS</A></TD>
  <TD WIDTH="15%" <?php if($op==6) echo "CLASS=set" ?>><A HREF="adm.php?op=6">PASTAS E ARQUIVOS</A></TD>
  <TD WIDTH="15%" <?php if($op==7) echo "CLASS=set" ?>><A HREF="adm.php?op=7">LINKS</A></TD>
@@ -55,7 +55,7 @@
 <?php  if ($op==1) {?>
 <!-- NOME E SIGLA -->
 
-<P CLASS="SECTION">Nome, Sigla &amp; Informações Gerais </P>
+<P CLASS="SECTION">Nome, Sigla &amp; InformaÃ§Ãµes Gerais </P>
 
 
 <TABLE WIDTH="700" ALIGN="CENTER">
@@ -65,7 +65,7 @@
  <TABLE  CLASS="tabela" WIDTH="700" ALIGN="CENTER">
   <TR><TD COLSPAN=2 CLASS=SECTION>Nome e Sigla da Disciplina</TD></TR>
   <TR><TD>Nome da disciplina:</TD><TD><INPUT NAME="tbdisciplina" SIZE=65 VALUE="<?php echo $nomedadisciplina;?>"></TD></TR>
-  <TR><TD>Código da disciplina:</TD><TD><INPUT NAME="tbsigla" SIZE=7 MAXLENGTH=7 VALUE="<?php echo $sigladadisciplina;?>"></TD></TR>
+  <TR><TD>CÃ³digo da disciplina:</TD><TD><INPUT NAME="tbsigla" SIZE=7 MAXLENGTH=7 VALUE="<?php echo $sigladadisciplina;?>"></TD></TR>
   <TR><TD COLSPAN=2 ALIGN=RIGHT><INPUT TYPE="SUBMIT" VALUE="Alterar"></TD></TR>
  </TABLE>
  <input type="hidden" name="action" value="sigla">
@@ -75,8 +75,8 @@
 <TR ALIGN="CENTER"><TD>
  <FORM METHOD="POST" ACTION="EDsigla.php">
   <TABLE  CLASS="tabela" WIDTH="100%">
-   <TR><TD COLSPAN=2 CLASS=SECTION>Informação dos Professores</TD></TR>
-   <TR><TD COLSPAN=2 ALIGN="CENTER">+ de 1 nome separados por vírgula</TD></TR>
+   <TR><TD COLSPAN=2 CLASS=SECTION>InformaÃ§Ã£o dos Professores</TD></TR>
+   <TR><TD COLSPAN=2 ALIGN="CENTER">+ de 1 nome separados por vÃ­rgula</TD></TR>
    <TR>
      <TD>Nome(s)</TD>
      <TD><INPUT NAME="tbprofessores" value="<?php echo $professores?>"></TD>
@@ -105,10 +105,10 @@
  <FORM METHOD="POST" ACTION="EDsigla.php">
   <TABLE  CLASS="tabela" WIDTH="100%">
    <TR>
-     <TD COLSPAN=2 CLASS=SECTION>Informação dos Monitores</TD>
+     <TD COLSPAN=2 CLASS=SECTION>InformaÃ§Ã£o dos Monitores</TD>
    </TR>
    <TR>
-     <TD COLSPAN=2 ALIGN="CENTER">+ de 1 nome separados por vírgula</TD>
+     <TD COLSPAN=2 ALIGN="CENTER">+ de 1 nome separados por vÃ­rgula</TD>
    </TR>
    <TR>
      <TD>Nome(s)</TD>
@@ -138,10 +138,10 @@
   <FORM METHOD="POST" ACTION="EDsigla.php">
   <TABLE CLASS=TABELA WIDTH="100%"> 
   <TR>
-   <TD CLASS="SECTION" ALIGN="CENTER">Horário para monitoria</TD>
+   <TD CLASS="SECTION" ALIGN="CENTER">HorÃ¡rio para monitoria</TD>
   </TR>
   <TR>
-   <TD ALIGN="CENTER">+ de 1 horário separados por vírgula</TD>
+   <TD ALIGN="CENTER">+ de 1 horÃ¡rio separados por vÃ­rgula</TD>
   </TR>
   <TR>
    <TD ALIGN="CENTER" >
@@ -158,13 +158,13 @@
   <FORM METHOD="POST" ACTION="EDsigla.php">
   <TABLE CLASS=TABELA WIDTH="100%"> 
   <TR>
-   <TD CLASS="SECTION" ALIGN="CENTER">Senha para acessar a ferramenta de administração</TD>
+   <TD CLASS="SECTION" ALIGN="CENTER">Senha para acessar a ferramenta de administraÃ§Ã£o</TD>
   </TR>
 <?php
  if($mysetedpassword==md5('modaulas'))
  {?>
   <TR>
-   <TD CLASS="SUBSECTION" ALIGN="CENTER"><FONT color="#ffffff">Senha padrão ativa, Mude a sua senha</FONT></TD>
+   <TD CLASS="SUBSECTION" ALIGN="CENTER"><FONT color="#ffffff">Senha padrÃ£o ativa, Mude a sua senha</FONT></TD>
   </TR>
  <?php } ?>
   <TR>
@@ -191,20 +191,20 @@
  $sday=$today["wday"];
 ?>
 
-<P CLASS="SECTION">Horário</P>
+<P CLASS="SECTION">HorÃ¡rio</P>
 <P CLASS="SUBSECTION"><?php echo "[".date("M d Y H:i:s")."]" ?></P>
 
 <FORM METHOD="POST" ACTION="EDhorario.php">
 <TABLE  CLASS="tabela" WIDTH="830"  ALIGN="CENTER" CELLPADDING=0 CELLSPACING=0>
  <TR ALIGN="CENTER">
-  <TD WIDTH="130"><B>Horário</B></TD>
+  <TD WIDTH="130"><B>HorÃ¡rio</B></TD>
   <TD WIDTH="100"><B>Domingo</B></TD>
   <TD WIDTH="100"><B>Segunda</B></TD>
-  <TD WIDTH="100"><B>Terça</B></TD>
+  <TD WIDTH="100"><B>TerÃ§a</B></TD>
   <TD WIDTH="100"><B>Quarta</B></TD>
   <TD WIDTH="100"><B>Quinta</B></TD>
   <TD WIDTH="100"><B>Sexta</B></TD>
-  <TD WIDTH="100"><B>Sábado</B></TD>
+  <TD WIDTH="100"><B>SÃ¡bado</B></TD>
  </TR>
  <TR ALIGN="CENTER">
   <TD WIDTH="130"><B>Esta semana</B></TD>
@@ -243,10 +243,10 @@ for($horario=0;$horario<count($tablehorario);$horario++)
  <TD VALIGN="TOP">
  <FORM METHOD="POST" ACTION="EDementa.php">
  <TABLE CLASS="tabela" WIDTH="525" >
-  <TR><TD ALIGN="RIGHT"><B>Ementa do Curso</B> (não coloque título)</TD></TR>
+  <TR><TD ALIGN="RIGHT"><B>Ementa do Curso</B> (nÃ£o coloque tÃ­tulo)</TD></TR>
   <TR><TD ALIGN="RIGHT"><TEXTAREA NAME="tbementa" rows=15 cols=55></TEXTAREA></TD></TR>
   <TR><TD ALIGN="RIGHT"><B>Bibliografia do Curso</B> (1 bibliografia por
-linha não quebre a linha no meio de uma mesma referência)</TD></TR>
+linha nÃ£o quebre a linha no meio de uma mesma referÃªncia)</TD></TR>
   <TR><TD ALIGN="RIGHT"><TEXTAREA NAME="tbbibliografia" rows=10 cols=55></TEXTAREA></TD></TR>
   <TR><TD ALIGN="RIGHT"><INPUT TYPE="SUBMIT" VALUE="Alterar"></TD></TR>
  </TABLE>
@@ -282,7 +282,7 @@ linha não quebre a linha no meio de uma mesma referência)</TD></TR>
    }
 ?>
 
-<P CLASS="SECTION">Calendário</P>
+<P CLASS="SECTION">CalendÃ¡rio</P>
 
 <TABLE WIDTH="100%" CELLPADDING=0 CELLSPACING=0>
 <TR>
@@ -291,8 +291,8 @@ linha não quebre a linha no meio de uma mesma referência)</TD></TR>
 <!-- Adicionar data ao calendario -->
 <P><TABLE CLASS="tabelareversa">
 <form action="EDcalendario.php" method="POST">
- <TR><TD COLSPAN="4"><B>Adicionar data ao calendário</B></TD></TR>
- <TR><TD>Dia</TD><TD>Mês</TD><TD>Ano</TD><TD>Descrição</TD></TR>
+ <TR><TD COLSPAN="4"><B>Adicionar data ao calendÃ¡rio</B></TD></TR>
+ <TR><TD>Dia</TD><TD>MÃªs</TD><TD>Ano</TD><TD>DescriÃ§Ã£o</TD></TR>
  <TR><TD>
   <SELECT name="tbdia">
 <?php
@@ -330,12 +330,12 @@ else
 echo "<FORM ACTION=\"EDcalendario.php\" METHOD=\"POST\">\n";
 echo "<P><TABLE BORDER=0 CLASS=TABELA>
   <TR>
-    <TD ALIGN=\"CENTER\" COLSPAN=4 CLASS=SECTION> Datas cadastradas no calendário</TD></TR>
+    <TD ALIGN=\"CENTER\" COLSPAN=4 CLASS=SECTION> Datas cadastradas no calendÃ¡rio</TD></TR>
   </TR>
   <TR BGCOLOR=\"#ffffff\">
    <TD WIDTH=\"150\" ALIGN=\"CENTER\"><B>Dia da Semana</B></TD>
-   <TD WIDTH=\"150\" ALIGN=\"CENTER\"><B>Dia/Mês/Ano</B></TD>
-   <TD WIDTH=\"350\"><B>Descrição</B></TD>
+   <TD WIDTH=\"150\" ALIGN=\"CENTER\"><B>Dia/MÃªs/Ano</B></TD>
+   <TD WIDTH=\"350\"><B>DescriÃ§Ã£o</B></TD>
    <TD>&nbsp;</TD>
   </TR>\n";
 if ($in != "")
@@ -514,7 +514,7 @@ foreach($post as $i => $p)
     <FORM ACTION="EDfile.php" METHOD="POST">
      <input type="hidden" name="action" value="apagarpasta">
      <input type="hidden" name="tbpasta" value="<?php echo $p ?>">
-     apagar &quot;<?php echo $p ?>&quot; e todo seu conteúdo ?&nbsp;&nbsp;&nbsp;
+     apagar &quot;<?php echo $p ?>&quot; e todo seu conteÃºdo ?&nbsp;&nbsp;&nbsp;
      <input type="checkbox" name="tbcheck">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <input type="submit" value="apaga">
     </FORM>
@@ -587,8 +587,8 @@ echo "</TABLE></P>";
 
 <TABLE  CLASS="tabelareversa" width="560">
 <FORM ACTION="EDlink.php" METHOD="POST">
- <TR><TD>Descrissão:</TD><TD colspan=2><input name="nome" size=50></TD></TR>
- <TR><TD>Endereço:</TD><TD><input name="endereco" value="http://" size=50></TD><TD ALIGN="RIGHT"><input type="submit" name="action" value="Adicionar"></TD></TR>
+ <TR><TD>DescrissÃ£o:</TD><TD colspan=2><input name="nome" size=50></TD></TR>
+ <TR><TD>EndereÃ§o:</TD><TD><input name="endereco" value="http://" size=50></TD><TD ALIGN="RIGHT"><input type="submit" name="action" value="Adicionar"></TD></TR>
 </FORM>
 </TABLE>
 <BR>
@@ -616,7 +616,7 @@ echo "</TABLE></P>";
 <?php } # FIM DO OP==7 ?>
 
 <?php  if ($op==0) {?>
- <P CLASS=SECTION> Bem vindo ao site de administração da página da disciplina <I><?php echo $nomedadisciplina ?></I></P>
+ <P CLASS=SECTION> Bem vindo ao site de administraÃ§Ã£o da pÃ¡gina da disciplina <I><?php echo $nomedadisciplina ?></I></P>
  <P CLASS=SECTION> Sigla: <I><?php echo $sigladadisciplina ?></I> </P>
 <?php } ?>
 
@@ -624,7 +624,7 @@ echo "</TABLE></P>";
 <TABLE WIDTH="100%">
  <TR>
    <TD WIDTH="200" VALIGN="TOP"><font size=-1>Desenvolvido por <A HREF="mailto:mbianchi@iag.usp.br">Marcelo Bianchi</A> @2005 para o programa PAE</FONT></TD>
-   <TD ALIGN="CENTER">Este programa é <B>GPL</B><BR> Desenvolvido com apoio da <A HREF="http://www.capes.gov.br/capes/portal/">CAPES</A> </TD>
+   <TD ALIGN="CENTER">Este programa Ã© <B>GPL</B><BR> Desenvolvido com apoio da <A HREF="http://www.capes.gov.br/capes/portal/">CAPES</A> </TD>
    <TD ALIGN="RIGHT" WIDTH="200" VALIGN="TOP"><FONT SIZE="-1"><I><A HREF="about.html">Sobre</A> ModAulas</I></FONT></TD></TR>
 </TABLE>
 </BODY>

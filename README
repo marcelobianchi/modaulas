@@ -1,15 +1,15 @@
-Instruções de instalação:
+InstruÃ§Ãµes de instalaÃ§Ã£o:
 
-1) Ache o seu diretório que o seu servidor de WEB com PHP esta
+1) Ache o seu diretÃ³rio que o seu servidor de WEB com PHP esta
 disponibilizando. Normalmente o ~/public_html/, iremos usar 
 ele como exemplo.
 
 2) Va para ~/public_html/
 
-3) Crie um diretório, por exemplo 'agg000'
+3) Crie um diretÃ³rio, por exemplo 'agg000'
 
-4) Copie o conteudo deste arquivo para este diretório. Dentro do diretório
-voce terá os seguintes arquivos. 
+4) Copie o conteudo deste arquivo para este diretÃ³rio. Dentro do diretÃ³rio
+voce terÃ¡ os seguintes arquivos. 
 
 mbianchi@pulso:~/public_html/agg000$ ls
 about.html        EDementa.php   funcoes.php        index.php   style.css
@@ -18,12 +18,12 @@ EDavisos.php      EDhorario.php  GETcalendario.php  logout.php
 EDcalendario.php  EDsigla.php    GETementa.php      modaulas
 mbianchi@pulso:~/public_html/agg000$ 
 
-5) Crie um diretório chamado moddata dentro do diretório agg000
+5) Crie um diretÃ³rio chamado moddata dentro do diretÃ³rio agg000
 
-6) Mude a permissão dele para 777, chmod 777 moddata
+6) Mude a permissÃ£o dele para 777, chmod 777 moddata
 
-7) Pronto agora é só acessar o diretório que o seu site está montado.
+7) Pronto agora Ã© sÃ³ acessar o diretÃ³rio que o seu site estÃ¡ montado.
 
 Sorte, 
 Marcelo Bianchi
-PS> A senha padrão para a administração do sistema é 'modaulas'
+PS> A senha padrÃ£o para a administraÃ§Ã£o do sistema Ã© 'modaulas'

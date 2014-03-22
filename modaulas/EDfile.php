@@ -4,15 +4,15 @@ if (!authme()) logmein();
 $action=$_POST['action'];
 
 if (!is_writeable($datadir))
-  erro("Não posso escrever no diretório $datadir");
+  erro("NÃ£o posso escrever no diretÃ³rio $datadir");
 
 switch($action)
 {
  case 'criarpasta':
    $tbpasta=$_POST['tbpasta'];
-   if ($tbpasta==NULL) erro('Parâmetros inválidos');
-   if (is_dir("$datadir/$tbpasta")) erro('Pasta já existe');
-   if ($tbpasta[0]=='.') erro('Parâmetros inválidos');
+   if ($tbpasta==NULL) erro('ParÃ¢metros invÃ¡lidos');
+   if (is_dir("$datadir/$tbpasta")) erro('Pasta jÃ¡ existe');
+   if ($tbpasta[0]=='.') erro('ParÃ¢metros invÃ¡lidos');
    mkdir("$datadir/$tbpasta",0777);
  break;
 
@@ -20,28 +20,28 @@ switch($action)
    $tbpasta=$_POST['tbpasta'];
    $tbcheck=$_POST['tbcheck'];
    
-   if ($tbpasta==NULL) erro('Parâmetros inválidos');
+   if ($tbpasta==NULL) erro('ParÃ¢metros invÃ¡lidos');
    if (is_dir("$datadir/$tbpasta")) 
      if ($tbcheck!='on')
-      erro('Voce não confirmou !');
+      erro('Voce nÃ£o confirmou !');
      else
       apagadir("$datadir/$tbpasta");
    else 
-     erro('Pasta não existe');
+     erro('Pasta nÃ£o existe');
  break; 
 
  case 'addarquivo':
    $tbpasta=$_POST['tbpasta'];
-   if ($tbpasta==NULL) erro('Parâmetros inválidos');
-   if (!is_dir("$datadir/$tbpasta")) erro('Pasta não existe');
+   if ($tbpasta==NULL) erro('ParÃ¢metros invÃ¡lidos');
+   if (!is_dir("$datadir/$tbpasta")) erro('Pasta nÃ£o existe');
 
    $nomeoriginal=$HTTP_POST_FILES['tbarquivo']['name'];
-   if (empty($nomeoriginal)) erro('Nome inválido !');
-   if (is_file("$datadir/$tbpasta/$nomeoriginal")) erro('Arquivo já existe !');
+   if (empty($nomeoriginal)) erro('Nome invÃ¡lido !');
+   if (is_file("$datadir/$tbpasta/$nomeoriginal")) erro('Arquivo jÃ¡ existe !');
 
    $a=move_uploaded_file($HTTP_POST_FILES['tbarquivo']['tmp_name'],"$datadir/$tbpasta/$nomeoriginal");
    if (!$a)
-     erro("Arquivo não pode ser armazenado, provável erro de mal-configuração do servidor, ou limite de upload ultrapassado !!");
+     erro("Arquivo nÃ£o pode ser armazenado, provÃ¡vel erro de mal-configuraÃ§Ã£o do servidor, ou limite de upload ultrapassado !!");
  break; 
 
  case 'delarquivo':
@@ -49,9 +49,9 @@ switch($action)
    $tbarquivo=$_POST['tbarquivo'];
    $tbcheck=$_POST['tbcheck'];
 
-   if ($tbcheck!='on') erro('Voce não confirmou !');
-   if ($tbpasta==NULL) erro('Parâmetros inválidos');
-   if ($tbarquivo==NULL) erro('Parâmetros inválidos');
+   if ($tbcheck!='on') erro('Voce nÃ£o confirmou !');
+   if ($tbpasta==NULL) erro('ParÃ¢metros invÃ¡lidos');
+   if ($tbarquivo==NULL) erro('ParÃ¢metros invÃ¡lidos');
    
    if (is_file("$datadir/$tbpasta/$tbarquivo"))
    {
@@ -59,7 +59,7 @@ switch($action)
      if (is_file("$datadir/$tbpasta/$tbarquivo"."_comentario")) unlink("$datadir/$tbpasta/$tbarquivo"."_comentario"); 
    }    
    else
-      erro('Arquivo não existe');
+      erro('Arquivo nÃ£o existe');
    
  break; 
 
@@ -67,9 +67,9 @@ switch($action)
    $tbpasta=$_POST['tbpasta'];
    $tbarquivo=$_POST['tbarquivo'];
    $tbcomentario=$_POST['tbcomentario'];
-   if ($tbpasta==NULL) erro('Parâmetros inválidos');
-   if ($tbarquivo==NULL) erro('Parâmetros inválidos');
-   if (!is_file("$datadir/$tbpasta/$tbarquivo")) erro('Arquivo não existe');
+   if ($tbpasta==NULL) erro('ParÃ¢metros invÃ¡lidos');
+   if ($tbarquivo==NULL) erro('ParÃ¢metros invÃ¡lidos');
+   if (!is_file("$datadir/$tbpasta/$tbarquivo")) erro('Arquivo nÃ£o existe');
  
    if($tbcomentario!=="")
    {
@@ -81,9 +81,9 @@ switch($action)
  break;
 
  default:
-   erro('Entrada inválida !');
+   erro('Entrada invÃ¡lida !');
  break;
 }
 
-aviso("Mudanças realizadas com sucesso !",6);
+aviso("MudanÃ§as realizadas com sucesso !",6);
 ?>

@@ -6,7 +6,7 @@
 
 <HEAD>
  <title><?php echo "$disciplina" ?></title>
- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
  <LINK rel="StyleSheet" href="style.css" type="text/css">
@@ -14,8 +14,8 @@
 
 <BODY>
 
-<H1>Calendário para a disciplina <?php echo "$nomedadisciplina - $sigladadisciplina" ?></H1>
-<h3>Gerado em <?php echo strftime("%d/%m/%Y às %H hs %M min",time()) ?></H3>
+<H1>CalendÃ¡rio para a disciplina <?php echo "$nomedadisciplina - $sigladadisciplina" ?></H1>
+<h3>Gerado em <?php echo strftime("%d/%m/%Y Ã s %H hs %M min",time()) ?></H3>
 <HR NOSHADE>
 <PRE>
 <?php

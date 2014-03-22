@@ -7,7 +7,7 @@ switch($action)
 {
  case "senha":
    $tbsenha=$_POST['tbsenha'];
-   if ($tbsenha=='') erro('A senha não pode ser nula');
+   if ($tbsenha=='') erro('A senha nÃ£o pode ser nula');
    changevariavel(mysetedpassword,md5($tbsenha));
  break;
  
@@ -56,9 +56,9 @@ switch($action)
  break;
  
  default:
-   erro('Entrada inválida !');
+   erro('Entrada invÃ¡lida !');
  break;
 }
  
-aviso("Informações alteradas com sucesso !",1);
+aviso("InformaÃ§Ãµes alteradas com sucesso !",1);
 ?>

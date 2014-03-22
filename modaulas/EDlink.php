@@ -4,7 +4,7 @@ if (!authme()) logmein();
 $action=$_POST['action'];
 
 if (!is_writeable($datadir))
-  erro("Não posso escrever no diretório $datadir");
+  erro("NÃ£o posso escrever no diretÃ³rio $datadir");
 
 switch($action)
 {
@@ -12,9 +12,9 @@ switch($action)
   $nome=$_POST[nome];
   $endereco=$_POST[endereco];
 
-  if(empty($nome)) aviso("Erro, entradas inválidas",7);
-  if(empty($endereco)) aviso("Erro, entradas inválidas",7);
-  if($endereco=="http://") aviso("Endereço inválido !",7);
+  if(empty($nome)) aviso("Erro, entradas invÃ¡lidas",7);
+  if(empty($endereco)) aviso("Erro, entradas invÃ¡lidas",7);
+  if($endereco=="http://") aviso("EndereÃ§o invÃ¡lido !",7);
 
   $fh=fopen($linkfile,"a");
   fwrite($fh,md5(time())."\t".$nome."\t".$endereco."\n");
@@ -41,9 +41,9 @@ switch($action)
  break; 
 
  default:
-   erro('Entrada inválida !');
+   erro('Entrada invÃ¡lida !');
  break;
 }
 
-aviso("Mudanças realizadas com sucesso !",7);
+aviso("MudanÃ§as realizadas com sucesso !",7);
 ?>

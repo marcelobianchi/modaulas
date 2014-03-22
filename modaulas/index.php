@@ -6,7 +6,7 @@
 ?>
 <HEAD>
  <title><?php echo strtoupper($sigladadisciplina)." - ".ucwords($nomedadisciplina) ?></title>
- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
  <LINK rel="StyleSheet" href="style.css" type="text/css">
 </HEAD>
@@ -21,7 +21,7 @@
   <P CLASS=TOP> <?php echo $nomedadisciplina ?></P>
   <P CLASS=SECTION> <?php echo $sigladadisciplina ?></P>
  </TD>
- <TD VALIGN="BOTTOM" ALIGN="RIGHT" WIDTH=200><A HREF="adm.php"><FONT SIZE=-1><I>Administração</I></FONT></A></TD>
+ <TD VALIGN="BOTTOM" ALIGN="RIGHT" WIDTH=200><A HREF="adm.php"><FONT SIZE=-1><I>AdministraÃ§Ã£o</I></FONT></A></TD>
 </TR>
 </TABLE>
 <HR NOSHADE>
@@ -60,7 +60,7 @@
 
 <TABLE WIDTH="100%">
 <TR><TD ALIGN="CENTER">
-<P CLASS="SUBSECTION">Horário da Monitoria</P>
+<P CLASS="SUBSECTION">HorÃ¡rio da Monitoria</P>
 <?php
 $m_horario=explode(',',$m_horario);
 foreach($m_horario as $i)
@@ -80,7 +80,7 @@ foreach($m_horario as $i)
 
 <!-- HORARIO -->
 <P><TABLE BORDER WIDTH="100%" CELLPADDING=10 CELLSPACING=0><TR><TD>
-<P CLASS="SECTION">Horário das aulas</P>
+<P CLASS="SECTION">HorÃ¡rio das aulas</P>
 <?php
  $today=getdate();
  $day=$today["mday"];
@@ -88,14 +88,14 @@ foreach($m_horario as $i)
 ?>
 <TABLE  CLASS=TABELA WIDTH="830"  ALIGN="CENTER" CELLPADDING=0 CELLSPACING=2>
  <TR ALIGN="CENTER">
-  <TD WIDTH="130"><B>Horário</B></TD>
+  <TD WIDTH="130"><B>HorÃ¡rio</B></TD>
   <TD WIDTH="100"><B>Domingo</B></TD>
   <TD WIDTH="100"><B>Segunda</B></TD>
-  <TD WIDTH="100"><B>Terça</B></TD>
+  <TD WIDTH="100"><B>TerÃ§a</B></TD>
   <TD WIDTH="100"><B>Quarta</B></TD>
   <TD WIDTH="100"><B>Quinta</B></TD>
   <TD WIDTH="100"><B>Sexta</B></TD>
-  <TD WIDTH="100"><B>Sábado</B></TD>
+  <TD WIDTH="100"><B>SÃ¡bado</B></TD>
  </TR>
  <TR ALIGN="CENTER">
   <TD WIDTH="130"><B>Esta semana</B></TD>
@@ -128,8 +128,8 @@ else
 ?>
 
 <P><TABLE BORDER WIDTH="100%" CELLPADDING=10 CELLSPACING=0><TR><TD>
-<P CLASS=SECTION>Calendário</P>
-<I><?php echo strftime("Hoje é %A, %d de %B de %Y\n",time()); ?></I>
+<P CLASS=SECTION>CalendÃ¡rio</P>
+<I><?php echo strftime("Hoje Ã© %A, %d de %B de %Y\n",time()); ?></I>
 <PRE>
 <?php
 $maxday=strtotime("+1 month");
@@ -147,7 +147,7 @@ foreach($in as $i => $a)
 ?>
 </PRE>
 </TD></TR>
-<TR><TD ALIGN="RIGHT"><A HREF="GETcalendario.php" TARGET="_NEW">ver todo o calendário</A>
+<TR><TD ALIGN="RIGHT"><A HREF="GETcalendario.php" TARGET="_NEW">ver todo o calendÃ¡rio</A>
 </TD></TR></TABLE></P>
 
 
@@ -157,7 +157,7 @@ foreach($in as $i => $a)
 <?php if(is_file($avisofile)) { ?>
   <CENTER>
   <IFRAME FRAMEBORDER=1 WIDTH="80%" ALIGN=middle scrolling=auto height=200 src="GETavisos.php">
-    O seu browser não suporta IFRAMES visualize os <A HREF="GETavisos.php">avisos aqui</A>.
+    O seu browser nÃ£o suporta IFRAMES visualize os <A HREF="GETavisos.php">avisos aqui</A>.
   </IFRAME>
   </CENTER>
  <?php } ?>
@@ -166,7 +166,7 @@ foreach($in as $i => $a)
 
 <!-- Links -->
 <P><TABLE BORDER=1 WIDTH="100%" CELLPADDING=10 CELLSPACING=0><TR><TD>
-<P CLASS=SECTION>Links Úteis</P>
+<P CLASS=SECTION>Links Ãšteis</P>
 <?php 
  if(is_file($linkfile)) 
  {
@@ -251,7 +251,7 @@ foreach($post as $i => $p)
 <TABLE WIDTH="100%">
  <TR>
    <TD WIDTH="200" VALIGN="TOP"><font size=-1>Desenvolvido por <A HREF="mailto:mbianchi@iag.usp.br">Marcelo Bianchi</A> @2005 para o programa PAE</FONT></TD>
-   <TD ALIGN="CENTER">Este programa é <B>GPL</B><BR> Desenvolvido com apoio da <A HREF="http://www.capes.gov.br/capes/portal/">CAPES</A> </TD>
+   <TD ALIGN="CENTER">Este programa Ã© <B>GPL</B><BR> Desenvolvido com apoio da <A HREF="http://www.capes.gov.br/capes/portal/">CAPES</A> </TD>
    <TD ALIGN="RIGHT" WIDTH="200" VALIGN="TOP"><FONT SIZE="-1"><I><A HREF="about.html">Sobre</A> ModAulas</I></FONT></TD></TR>
 </TABLE>
 

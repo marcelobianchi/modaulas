@@ -7,13 +7,13 @@ $action=$_POST['action'];
 switch($action)
 {
  case "adddata":
-    $tbdia=(!isset($_POST['tbdia']))?erro("Dia inválido"):$_POST['tbdia'];
-    $tbmes=(!isset($_POST['tbmes']))?erro("Mes inválido"):$_POST['tbmes'];
-    $tbano=(!isset($_POST['tbano']))?erro("Ano inválido"):$_POST['tbano'];
+    $tbdia=(!isset($_POST['tbdia']))?erro("Dia invÃ¡lido"):$_POST['tbdia'];
+    $tbmes=(!isset($_POST['tbmes']))?erro("Mes invÃ¡lido"):$_POST['tbmes'];
+    $tbano=(!isset($_POST['tbano']))?erro("Ano invÃ¡lido"):$_POST['tbano'];
 
     $cmp=$_POST['tbcmt'];
     if (strcmp($cmp,"")==0) 
-         erro('Voce deve entrar uma descrissão');
+         erro('Voce deve entrar uma descrissÃ£o');
     
     $dia=strtotime("$tbmes/$tbdia/$tbano");
     $fh=fopen($calfile,"a");
@@ -44,7 +44,7 @@ switch($action)
       $fh=fopen($calfile,"w");
   }
   else 
-      erro("Não achei o arquivo $calfile");
+      erro("NÃ£o achei o arquivo $calfile");
    
    foreach($in as $i)
    {
@@ -60,9 +60,9 @@ switch($action)
  break;
 
  default:
-   erro('Entrada inválida !');
+   erro('Entrada invÃ¡lida !');
  break;
 }
 
-aviso('Edição de datas realizadas com sucesso !',4);
+aviso('EdiÃ§Ã£o de datas realizadas com sucesso !',4);
 ?>

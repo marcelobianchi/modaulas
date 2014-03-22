@@ -6,7 +6,7 @@ $tbementa=$_POST['tbementa'];
 $tbbibliografia=$_POST['tbbibliografia'];
 
 $fh=fopen($ementafile,"w");
-if ($fh==NULL) erro("Não posso gravar no diretório $datadir");
+if ($fh==NULL) erro("NÃ£o posso gravar no diretÃ³rio $datadir");
 fwrite($fh,"<P CLASS=SECTION>Ementa do curso: $nomedadisciplina [$sigladadisciplina]</P>\n");
 
 $tbementa=str_replace(array("\'",'\"'),array("'",'"'),$tbementa);

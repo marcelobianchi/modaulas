@@ -7,9 +7,9 @@ $action=$_POST['action'];
 switch($action)
 {
  case "addaviso":
- $tbavisotitulo=(isset($_POST['tbavisotitulo']))?$_POST['tbavisotitulo']:erro('RequisiÁ„o incompleta !');
- $tbaviso=(isset($_POST['tbaviso']))?$_POST['tbaviso']:erro('RequisiÁ„o incompleta !');
- if (strcmp($tbaviso,"")==0) erro('RequisiÁ„o incompleta !');
+ $tbavisotitulo=(isset($_POST['tbavisotitulo']))?$_POST['tbavisotitulo']:erro('Requisi√ß√£o incompleta !');
+ $tbaviso=(isset($_POST['tbaviso']))?$_POST['tbaviso']:erro('Requisi√ß√£o incompleta !');
+ if (strcmp($tbaviso,"")==0) erro('Requisi√ß√£o incompleta !');
 
  if (is_file($avisofile))
    $avisos=file($avisofile);
@@ -18,7 +18,7 @@ switch($action)
 
  $fh=fopen($avisofile,"w");
  if ($fh==NULL) 
-   erro("N„o posso gravar $avisofile");
+   erro("N√£o posso gravar $avisofile");
 
 
  $tbaviso=str_replace(array("\'",'\"'),array("'",'"'),$tbaviso);
@@ -40,11 +40,11 @@ switch($action)
    if (strncmp($tbconfirma,'on',2)==0)
      unlink($avisofile);
    else
-     erro('Voce deve confirmar aÁ„o com o CHECKBOX !');
+     erro('Voce deve confirmar a√ß√£o com o CHECKBOX !');
  break; 
 
  default:
-   erro('Entrada inv·lida !');
+   erro('Entrada inv√°lida !');
  break;
 }
 
