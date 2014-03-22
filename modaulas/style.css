@@ -1,0 +1,81 @@
+body {
+  background: white;
+  color: black;
+  font-family: arial,sans-serif;
+}
+
+.mastertable {
+    font-size: 11;
+    text-align: center;
+}
+
+.set { 
+    font-weight: bold;
+}
+
+.tabela {
+	background-color: #4996ce;
+}
+   
+.tabelareversa {
+	background-color: #284d49;
+	color: #ffffff;
+}
+
+.TOP {
+    font-weight: bold; 
+    font-size: 32;
+    text-align: center;
+}
+
+.SECTION {
+    font-weight: bold; 
+    font-size: 22;
+    text-align: center;
+}
+
+.SUBSECTION {
+    font-weight: bold; 
+    font-size: 17;
+    text-align: center;
+}
+
+.MESSAGE {
+    font-weight: bold; 
+    font-size: 17;
+    text-align: center;
+    color: #00f;
+}
+
+.ERRO {
+    font-weight: bold;
+    font-size: 17;
+    text-align: center;
+    color: #f00;
+}
+
+dt a {
+  font-weight: bold;
+  margin-top: .8em;
+}
+
+a:link {
+  color: #00f;
+  background: none;
+}
+
+a:visited {
+  color: #00f;
+  background: none;
+}
+
+a:active {
+  color: green;
+  background: #FFD700;
+}
+
+a:hover {
+  color: #00f;
+  background: #fff;
+}
+
