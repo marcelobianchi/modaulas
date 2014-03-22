@@ -29,8 +29,15 @@ switch($action)
  break;
 
  case 'deldata':
-  $data=(isset($_POST['tbdata']))?$_POST['tbdata']:erro('Entrada inválida');
-
+  $d=array();
+  $pos=0;
+  foreach($_POST as $i=>$p)
+    if (strncmp($i,"apaga_",6)==0) 
+    {
+     $d[$pos]=$p;
+     $pos++;
+    }
+  
   if (is_file($calfile))
   {
       $in=file($calfile);
@@ -42,11 +49,11 @@ switch($action)
    foreach($in as $i)
    {
     list($dia,$cmp)=split("\|",rtrim($i),2);
-    $tbdia=date("d",$dia);
-    $tbmes=date("m",$dia);
-    $tbano=date("y",$dia);
-    if ($data!=$dia)
-      fwrite($fh,"$i");
+    $go=1;
+    foreach($d as $data)
+     if ($dia==$data) $go=0;   
+    if ($go==1)
+       fwrite($fh,"$i");
    }
 
   fclose($fh);

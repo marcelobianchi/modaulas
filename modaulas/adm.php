@@ -327,6 +327,7 @@ if (is_file($calfile))
 else 
   $in="";
   
+echo "<FORM ACTION=\"EDcalendario.php\" METHOD=\"POST\">\n";
 echo "<P><TABLE BORDER=0 CLASS=TABELA>
   <TR>
     <TD ALIGN=\"CENTER\" COLSPAN=4 CLASS=SECTION> Datas cadastradas no calendário</TD></TR>
@@ -353,17 +354,16 @@ if ($in != "")
    ?>
     <TR BGCOLOR="#ffffff"><TD ALIGN="CENTER"><?php echo $wdia?></TD><TD ALIGN="CENTER"><?php echo "$tbdia/$tbmes/$tbano" ?></TD><TD><?php echo $cmp ?></TD>
     <TD>
-      <FORM ACTION="EDcalendario.php" METHOD="POST">
- 	<INPUT TYPE="submit" value="Apagar data">
- 	<INPUT TYPE="hidden" name="tbdata" value="<?php echo $dia?>">
- 	<INPUT TYPE="hidden" name="action" value="deldata">
-      </FORM>
+      <input type="checkbox" name="apaga_<?php echo $dia ?>" value="<?php echo $dia ?>">
      </TD>
      </TR>
    <?php
  }
+echo " <TR><TD COLSPAN=4 ALIGN=\"RIGHT\"><INPUT TYPE=\"submit\" value=\"Apagar datas\"></TD></TR>\n";
 echo "</TABLE></P>\n";
 ?>
+<INPUT TYPE="hidden" name="action" value="deldata">
+</FORM>
 
 
 </TD>
@@ -426,6 +426,11 @@ echo "</TABLE></P>\n";
 
    <TABLE CLASS="tabela" width="485">
    <FORM METHOD="POST" ACTION="EDavisos.php">
+    <TR>
+     <TD COLSPAN=2 ALIGN="RIGHT">
+       Titulo do post: <INPUT NAME="tbavisotitulo" size=36>
+     </TD>
+    </TR>
     <TR>
      <TD COLSPAN=2 ALIGN="RIGHT">
        <TEXTAREA NAME="tbaviso" rows=15 cols=50></TEXTAREA>

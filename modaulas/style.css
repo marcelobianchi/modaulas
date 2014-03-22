@@ -40,6 +40,12 @@ body {
     text-align: center;
 }
 
+.SUBSECTION_L {
+    font-weight: bold; 
+    font-size: 17;
+    text-align: left;
+}
+
 .MESSAGE {
     font-weight: bold; 
     font-size: 17;
