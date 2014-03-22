@@ -1,4 +1,4 @@
-<?
+<?php
 include("funcoes.php");
 if (!authme()) logmein();
 $action=$_POST['action'];
