@@ -13,8 +13,8 @@ switch($action)
    if ($tbpasta==NULL) erro('Parâmetros inválidos');
    if (is_dir("$datadir/$tbpasta")) erro('Pasta já existe');
    if ($tbpasta[0]=='.') erro('Parâmetros inválidos');
-   mkdir("$datadir/$tbpasta");
- break; 
+   mkdir("$datadir/$tbpasta",0777);
+ break;
 
  case 'apagarpasta':
    $tbpasta=$_POST['tbpasta'];

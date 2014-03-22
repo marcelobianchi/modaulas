@@ -164,6 +164,27 @@ foreach($in as $i => $a)
 </TD></TR></TABLE></P>
 
 
+<!-- Links -->
+<P><TABLE BORDER=1 WIDTH="100%" CELLPADDING=10 CELLSPACING=0><TR><TD>
+<P CLASS=SECTION>Links Úteis</P>
+<?php 
+ if(is_file($linkfile)) 
+ {
+  echo "<UL>\n";
+  $lists=file($linkfile);
+  foreach($lists as $item)
+  {
+   list($getid,$getnome,$getendereco)=split("\t",$item,3);
+   echo "<LI><A HREF=\"$getendereco\" TARGET=\"_NEW\" TITLE=\"$getnome\">$getnome</A>";
+  }
+  echo "</UL>\n";
+ }
+?>
+</TD></TR></TABLE></P>
+
+
+
+
 <P><TABLE BORDER WIDTH="100%" CELLPADDING=10 CELLSPACING=0><TR><TD>
  <P CLASS=SECTION>Apostilas</P>
 <?php

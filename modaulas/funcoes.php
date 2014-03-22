@@ -211,6 +211,7 @@ $varfile="$datadir/variaveis.php";
 $calfile="$datadir/calendario.txt"; 
 $avisofile="$datadir/avisos.html";
 $ementafile="$datadir/ementa.html";
+$linkfile="$datadir/links.dat";
 
 verificatudo();
 

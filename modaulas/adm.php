@@ -40,6 +40,7 @@
  <TD WIDTH="15%" <?php if($op==4) echo "CLASS=set" ?>><A HREF="adm.php?op=4">CALENDÁRIO</A></TD>
  <TD WIDTH="15%" <?php if($op==5) echo "CLASS=set" ?>><A HREF="adm.php?op=5">QUADRO DE AVISOS</A></TD>
  <TD WIDTH="15%" <?php if($op==6) echo "CLASS=set" ?>><A HREF="adm.php?op=6">PASTAS E ARQUIVOS</A></TD>
+ <TD WIDTH="15%" <?php if($op==7) echo "CLASS=set" ?>><A HREF="adm.php?op=7">LINKS</A></TD>
 </TR>
 <TR>
 </TR>
@@ -571,6 +572,41 @@ echo "</TABLE></P>";
 ?>
 
 <?php } # FIM DO OP==6 ?>
+
+
+<?php  if ($op==7) {?>
+<!-- LINKS -->
+<P CLASS="SECTION">Links sugeridos</P>
+
+<TABLE  CLASS="tabelareversa" width="560">
+<FORM ACTION="EDlink.php" METHOD="POST">
+ <TR><TD>Descrissão:</TD><TD colspan=2><input name="nome" size=50></TD></TR>
+ <TR><TD>Endereço:</TD><TD><input name="endereco" value="http://" size=50></TD><TD ALIGN="RIGHT"><input type="submit" name="action" value="Adicionar"></TD></TR>
+</FORM>
+</TABLE>
+<BR>
+<TABLE class=tabela  width="560">
+ <?php
+  if (is_file($linkfile))
+  {
+   $lists=file($linkfile);
+  } else 
+      $lists=array();
+      
+  foreach($lists as $item)
+  {
+   list($id,$nome,$endereco)=split("\t",$item,3);
+   echo "<FORM ACTION=\"EDlink.php\" METHOD=\"POST\">
+  <input type=\"hidden\" name=\"id\" VALUE=\"$id\">
+  <TR>
+   <TD>$nome - [$endereco]</TD>
+   <TD ALIGN=\"RIGHT\"><input type=\"submit\" name=\"action\" value=\"Apagar\"></TD>
+  </TR>
+ </FORM>\n";
+  }?>  
+</TABLE>
+
+<?php } # FIM DO OP==7 ?>
 
 <?php  if ($op==0) {?>
  <P CLASS=SECTION> Bem vindo ao site de administração da página da disciplina <I><?php echo $nomedadisciplina ?></I></P>
