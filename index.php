@@ -129,7 +129,7 @@ else
 
 <P><TABLE BORDER WIDTH="100%" CELLPADDING=10 CELLSPACING=0><TR><TD>
 <P CLASS=SECTION>Calendário</P>
-<I><?php echo strftime("Hoje é %A, %d de %B de %Y\n",time()); ?></I>
+<I><?php echo "Hoje é".utf8_encode(strftime(" %A, %d de %B de %Y\n",time())); ?></I>
 <PRE>
 <?php
 $maxday=strtotime("+1 month");
