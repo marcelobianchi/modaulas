@@ -202,6 +202,8 @@ if (is_dir($datadir)) {
    }
 }
 
+sort($post);
+
 foreach($post as $i => $p)
 {
  echo "<P><TABLE WIDTH=\"800\">

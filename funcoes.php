@@ -144,7 +144,7 @@ function aviso($message,$pos){
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
  <LINK rel="StyleSheet" href="style.css" type="text/css">
- <meta http-equiv="refresh" content="4; URL=adm.php?op=<?echo $pos?>">
+ <meta http-equiv="refresh" content="2; URL=adm.php?op=<?php echo $pos ?>">
 </HEAD>
 
 <BODY>
@@ -155,7 +155,7 @@ echo "<HR NOSHADE>\n";
 if($pos==0)
   echo "<P ALIGN=\"RIGHT\"><A HREF=\"adm.php\">Voltar</A></P>\n";
 else
-  echo "<P ALIGN=\"RIGHT\">Voce será redirecionado de volta em 4 segundos ! <BR> [<A HREF=\"adm.php?op=$pos\">Voltar</A>]</P>\n";
+  echo "<P ALIGN=\"RIGHT\">Voce será redirecionado de volta em 2 segundos ! <BR> [<A HREF=\"adm.php?op=$pos\">Voltar</A>]</P>\n";
 
 echo "
 </BODY>
