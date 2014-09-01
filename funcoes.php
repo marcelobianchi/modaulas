@@ -73,7 +73,15 @@ exit();
 function verificatudo(){
  global $datadir; 
  
- setlocale(LC_ALL,'pt_BR');
+ if (!setlocale(LC_TIME,'pt_BR.UTF8')) {
+   if (!setlocale(LC_TIME,'pt_BR.ISO_8859_1')) {
+     if (!setlocale(LC_TIME,'pt_BR')) {
+       if (!setlocale(LC_TIME,'ptb')) {
+         error_log("Impossível acertar o locale para o Brazil, datas vão ficar em inglês.");
+       }
+     }
+   }
+ }
  if (!is_dir($datadir))
   erro("Diretório &quot;$datadir&quot; não existe");
  if (!is_writable($datadir))

@@ -29,7 +29,7 @@
 <P><TABLE BORDER WIDTH="100%" CELLPADDING=10 CELLSPACING=0><TR><TD>
 <P CLASS="SECTION">Professores &amp; Monitores</P>
 
-<P><TABLE CELLSPACING=0 CELLPADDING=2 WIDTH="100%">
+<P><TABLE CELLSPACING=0 CELLPADDING=5 WIDTH="100%">
 <TR ALIGN="LEFT" VALIGN="TOP" CLASS=tabelareversa>
 <?php
   $professores=explode(',',$professores);
@@ -38,7 +38,7 @@
   $p_sala=explode(',',$p_sala);
 ?>
 <?php for($i=0;$i < count($professores);$i++)
-    echo "  <TD><FONT SIZE=\"-1\">Prof. Dr. $professores[$i]<BR>"
+    echo "  <TD WIDTH='25%'><FONT SIZE=\"-1\">Prof. Dr. $professores[$i]<BR>"
 	        .(($p_emails[$i]!='')?"[<A HREF=\"mailto:$p_emails[$i]\">EMAIL</A>] ":'')
 		.(($p_telefones[$i]!='')?"Tel: $p_telefones[$i]":'')."<BR>"
 		.(($p_sala[$i]!='')?"Sala $p_sala[$i]":'')."</FONT></TD>\n"; 
@@ -86,7 +86,7 @@ foreach($m_horario as $i)
  $day=$today["mday"];
  $sday=$today["wday"];
 ?>
-<TABLE  CLASS=TABELA WIDTH="830"  ALIGN="CENTER" CELLPADDING=0 CELLSPACING=2>
+<TABLE  CLASS=TABELA WIDTH="830"  ALIGN="CENTER" CELLPADDING=5 CELLSPACING=2>
  <TR ALIGN="CENTER">
   <TD WIDTH="130"><B>Horário</B></TD>
   <TD WIDTH="100"><B>Domingo</B></TD>
@@ -206,7 +206,7 @@ sort($post);
 
 foreach($post as $i => $p)
 {
- echo "<P><TABLE WIDTH=\"800\">
+ echo "<P><TABLE WIDTH=\"800\" CELLPADDING=2>
   <TR>
   <TD WIDTH=\"50\"><B>Pasta</B>:</TD><TD CLASS=tabelareversa COLSPAN=4>$p</TD>
   </TR>\n";

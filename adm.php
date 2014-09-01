@@ -497,9 +497,10 @@ if (is_dir($datadir)) {
 
 <P CLASS="SECTION">
    <?php 
-    if(count($post)>0) 
+    if(count($post)>0) {
       echo "Editar arquivos e pastas atuais ";
-    else
+      sort($post);
+    } else
       echo "Nenhuma pasta criada";
    ?>
 </P>
