@@ -19,7 +19,7 @@ function authme($passwd = '')
     session_start();
     global $mysetedpassword, $instanceID;
     $check = ! empty( $passwd );
-    $authdata=$_SESSION['authdata'];
+    $authdata = (isset($_SESSION['authdata'])) ? $_SESSION['authdata'] : "";
 
     if (is_array($authdata))
     {
