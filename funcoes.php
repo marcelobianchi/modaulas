@@ -231,11 +231,11 @@ function size_translate($filesize)
 
 $tablehorario = array("08:00 - 10:00","10:00 - 12:00","14:00 - 16:00","16:00 - 18:00", "19:00 - 21:00","21:00 - 23:00");
 $datadir      = "moddata/";
-$varfile      = "$datadir/variaveis.php";
-$calfile      = "$datadir/calendario.txt"; 
-$avisofile    = "$datadir/avisos.html";
-$ementafile   = "$datadir/ementa.html";
-$linkfile     = "$datadir/links.dat";
+$varfile      = $datadir."variaveis.php";
+$calfile      = $datadir."calendario.txt"; 
+$avisofile    = $datadir."avisos.html";
+$ementafile   = $datadir."ementa.html";
+$linkfile     = $datadir."links.dat";
 
 /*
  * Variables used in main code, initialized as ""
