@@ -4,6 +4,10 @@ body {
   font-family: arial,sans-serif;
 }
 
+table {
+	margin-bottom: 15px;
+}
+
 .mastertable {
     font-size: 11;
     text-align: center;

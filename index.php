@@ -202,54 +202,70 @@ else
 	<TR><TD>
 	<P CLASS=SECTION>Apostilas</P>
 	<?php
-	$post=array();
-	if (is_dir($datadir)) {
-		if ($dh = opendir($datadir)) {
-			$i=0;
-			while (($file = readdir($dh)) !== false) {
-				if (($file!='.')&&($file!='..')&&(is_dir("$datadir/$file"))) {
-					$post[$i]=$file;
-					$i++;
-				}
-			}
-			closedir($dh);
+	$folders = array();
+	if (is_dir($datadir) && ($dh = opendir($datadir))) {
+		while (($file = readdir($dh)) !== false) {
+			if ($file == '.') continue;
+			if ($file == '..') continue;
+			if (!is_dir("$datadir/$file")) continue;
+			array_push($folders, $file);
 		}
+		closedir($dh);
 	}
-	sort($post);
-	foreach($post as $i => $p) {
+	
+	sort($folders);
+	
+	foreach($folders as $folder) {
 		?>
 		<TABLE WIDTH="800" CELLPADDING=2>
 		<TR>
 			<TD WIDTH="50"><B>Pasta</B>:</TD>
-			<TD CLASS=tabelareversa COLSPAN=4><?php echo $p ?></TD>
+			<TD CLASS=tabelareversa COLSPAN=4><?php echo $folder ?></TD>
 		</TR>
-		<?php
-		 if ($dh = opendir("$datadir/$p")) {
-			while (($f = readdir($dh)) !== false) {
-				if (($f!='.') && ($f!='..') && (substr($f,strlen($f)-11,11)!=='_comentario')) {
-					if (is_file("$datadir/$p/$f"."_comentario")) {
-						$comentario=file("$datadir/$p/$f"."_comentario");
-						$comentario=rtrim($comentario[0]);
-					} else
-						$comentario="";
 
-					$fsize=filesize("$datadir/$p/$f");
-					$fsize=size_translate($fsize);
-					list($lixo,$mime)=split("/",mime_content_type("$datadir/$p/$f"),2);
-					$mime=strtoupper($mime);
-					?>
-					<TR>
-						<TD WIDTH="50">&nbsp;</TD>
-						<TD WIDTH="70"><FONT SIZE="-1"><?php echo "($mime)" ?></FONT></TD>
-						<TD WIDTH="540" CLASS=TABELA><?php echo (($comentario=='')?$f:$comentario) ?></TD>
-						<TD WIDTH="80" ALIGN="RIGHT"><?php echo $fsize ?></TD>
-						<TD WIDTH="50">[<A HREF="<?php echo "$datadir/$p/$f"?>">Baixar</A>]</TD>
-					</TR>
-					<?php
+		<?php
+		$files = array();
+		if ($dh = opendir("$datadir/$folder")) {
+			while (($f = readdir($dh)) !== false) {
+				if ($f == ".") continue;
+				if ($f == "..") continue;
+				if (strrpos($f, "_comentario") !== False) continue;
+				
+				$comentario = $f;
+				
+				if (is_file("$datadir/$folder/$f"."_comentario")) {
+					$comentario=file("$datadir/$folder/$f"."_comentario");
+					$comentario=rtrim($comentario[0]);
 				}
+
+				$fsize = filesize("$datadir/$folder/$f");
+				$fsize = size_translate($fsize);
+				list($lixo,$mime) = split("/",mime_content_type("$datadir/$folder/$f"),2);
+				$mime = strtoupper($mime);
+
+				array_push($files, array(
+					'cmt'  => $comentario,
+					'path' => "$datadir/$folder/$f",
+					'mime' => $mime,
+					'fs'   => $fsize
+				));
 			}
 		}
-	?>
+
+		uasort($files, 'filecmp');
+
+		foreach($files as $file) {
+		?>
+			<TR>
+				<TD WIDTH="50">&nbsp;</TD>
+				<TD WIDTH="70"><FONT SIZE="-1">(<?php echo $file['mime'] ?>)</FONT></TD>
+				<TD WIDTH="540" CLASS=TABELA><?php echo $file['cmt'] ?></TD>
+				<TD WIDTH="80" ALIGN="RIGHT"><?php echo $file['fs'] ?></TD>
+				<TD WIDTH="50">[<A HREF="<?php echo $file['path'] ?>">Baixar</A>]</TD>
+			</TR>
+		<?php
+		}
+		?>
 	</TABLE>
 	<?php } ?>
 

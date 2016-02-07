@@ -7,6 +7,13 @@ if (!function_exists('mime_content_type')) {
    }
 }
 
+function filecmp($a, $b) {
+  if ($a['cmt'] == $b['cmt']) {
+    return 0;
+  }
+  return ($a['cmt'] < $b['cmt']) ? -1 : 1;
+}
+
 function authme($passwd = '')
 { 
     session_start();
@@ -77,7 +84,7 @@ function verificatudo(){
    if (!setlocale(LC_TIME,'pt_BR.ISO_8859_1')) {
      if (!setlocale(LC_TIME,'pt_BR')) {
        if (!setlocale(LC_TIME,'ptb')) {
-         error_log("Impossível acertar o locale para o Brazil, datas vão ficar em inglês.");
+         error_log("Data vao ficar em ingles LOCALE=pt_BR nao pode ser configurado no sistema. Habilite este locale para ver as datas em portugues.");
        }
      }
    }
@@ -221,27 +228,44 @@ function size_translate($filesize)
 
 ################## Começo Verdadeiro ########################################################
 
-$tablehorario=array("08:00 - 10:00","10:00 - 12:00","14:00 - 16:00","16:00 - 18:00", "19:00 - 21:00","21:00 - 23:00");
-$datadir="moddata/";
-$varfile="$datadir/variaveis.php";
-$calfile="$datadir/calendario.txt"; 
-$avisofile="$datadir/avisos.html";
-$ementafile="$datadir/ementa.html";
-$linkfile="$datadir/links.dat";
+$tablehorario = array("08:00 - 10:00","10:00 - 12:00","14:00 - 16:00","16:00 - 18:00", "19:00 - 21:00","21:00 - 23:00");
+$datadir      = "moddata/";
+$varfile      = "$datadir/variaveis.php";
+$calfile      = "$datadir/calendario.txt"; 
+$avisofile    = "$datadir/avisos.html";
+$ementafile   = "$datadir/ementa.html";
+$linkfile     = "$datadir/links.dat";
+
+/*
+ * Variables used in main code, initialized as ""
+ */
+
+$sigladadisciplina = "";
+$nomedadisciplina  = "";
+$professores       = "";
+$p_telefones       = "";
+$p_email           = "";
+$p_sala            = "";
+$monitores         = "";
+$m_telefones       = "";
+$m_email           = "";
+$m_sala            = "";
+$m_horario         = "";
+$tabeladehorario   = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0";
 
 verificatudo();
 
 if(is_file($varfile)) 
   include($varfile);
 
-if(empty($instanceID))
+if( !isset($instanceID) || empty($instanceID))
 {
-  changevariavel(instanceID,md5(time()));
+  changevariavel("instanceID", md5(time()));
 }
 
-if(empty($mysetedpassword))
+if(!isset($mysetedpassword) || empty($mysetedpassword))
 {
-  changevariavel(mysetedpassword,md5('modaulas'));  
+  changevariavel("mysetedpassword", md5('modaulas'));  
 }
 
 if (isset($tabeladehorario))
