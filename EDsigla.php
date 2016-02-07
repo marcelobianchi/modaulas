@@ -7,8 +7,8 @@ switch($action)
 {
  case "senha":
    $tbsenha=$_POST['tbsenha'];
-   if ($tbsenha=='') erro('A senha não pode ser nula');
-   changevariavel(mysetedpassword,md5($tbsenha));
+   if ($tbsenha=='') erro('A senha não pode ser nula', 1);
+   changevariavel('mysetedpassword',md5($tbsenha));
  break;
  
  case "sigla":
@@ -21,8 +21,8 @@ switch($action)
    if (!strcmp($tbsigla,""))
      erro("Voce deve entrar a sigla da Disciplina", 1);
 
-   changevariavel(nomedadisciplina,$tbdisciplina);
-   changevariavel(sigladadisciplina,$tbsigla);
+   changevariavel('nomedadisciplina',$tbdisciplina);
+   changevariavel('sigladadisciplina',$tbsigla);
  break;
 
  case "professor":

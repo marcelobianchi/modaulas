@@ -476,7 +476,7 @@ echo "</TABLE></P>\n";
 	<input type="hidden" name="action" value="criarpasta">
 	<TABLE CLASS="tabelareversa"  CELLPADDING=3 WIDTH="850" ALIGN="CENTER">
 		<TR><TD COLSPAN=3 CLASS=SUBSECTION>Criar uma nova pasta</TD></TR>
-		<TR><TD COLSPAN=2>Nome da pasta: <INPUT NAME="tbpasta"></TD>
+		<TR><TD COLSPAN=2>Nome da pasta: <INPUT NAME="tbpasta" SIZE=95></TD>
 			<TD ALIGN="RIGHT"><input type="submit" value="Criar Pasta"></TD></TR>
 	</TABLE>
 </FORM>
@@ -505,8 +505,7 @@ foreach($folders as $fpath => $folder) { ?>
 	<TR>
 		<FORM ACTION="EDfile.php" METHOD="POST" ENCTYPE="multipart/form-data">
 			<TD COLSPAN=2 VALIGN="MIDDLE" ALIGN="LEFT">
-				<INPUT type="submit" value="Adiciona arquivo na pasta: <?php echo $fpath ?>">
-				<INPUT type="file" size=24 NAME="tbarquivo" title="Escolha um arquivo para carregar na pasta">
+				<INPUT type="submit" value="Adicionar em: <?php echo $fpath ?>">&nbsp;<INPUT type="file" size=24 NAME="tbarquivo" title="Escolha um arquivo para carregar na pasta">
 				<INPUT type="hidden" name="tbpasta" value="<?php echo $fpath ?>">
 				<INPUT type="hidden" name="action" value="addarquivo">
 			</TD>
