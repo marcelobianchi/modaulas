@@ -226,6 +226,62 @@ function size_translate($filesize)
    return $filesize;
 }
 
+function collect($datadir) {
+	$folders = array();
+	if (is_dir($datadir) && ($dh = opendir($datadir))) {
+		while (($folder = readdir($dh)) !== false) {
+			if ($folder == '.') continue;
+			if ($folder == '..') continue;
+			if (!is_dir("$datadir/$folder")) continue;
+	
+			$files = array();
+			if ($dhf = opendir("$datadir/$folder")) {
+				while (($file = readdir($dhf)) !== false) {
+					if ($file == ".") continue;
+					if ($file == "..") continue;
+					if (strrpos($file, "_comentario") !== False) continue;
+					
+					$fsize = filesize("$datadir/$folder/$file");
+					$fsize = size_translate($fsize);
+					list($lixo,$mime) = split("/",mime_content_type("$datadir/$folder/$file"),2);
+					$mime = strtoupper($mime);
+					
+					$comentario = "";
+					
+					$hidden     = False;
+					$realfile   = $file;
+					if (strrpos($file, "_hidden_") !== False) {
+						$hidden   = True;
+						$realfile = $file;
+						$file     = substr($file, 0, strrpos($file, "_hidden_"));
+					}
+					
+					$comentario = $file;
+					if (is_file("$datadir/$folder/$file"."_comentario")) {
+						$comentario=file("$datadir/$folder/$file"."_comentario");
+						$comentario=rtrim($comentario[0]);
+					}
+					
+					array_push($files, array(
+						'cmt'      => $comentario,
+						'path'     => "$datadir/$folder/$realfile",
+						'mime'     => $mime,
+						'hidden'   => $hidden,
+						'name'     => $file,
+						'realname' => $realfile,
+						'fs'       => $fsize
+						)
+					);
+				}
+				uasort($files, 'filecmp');
+				$folders[$folder] = $files;
+			}
+			closedir($dhf);
+		}
+	}
+	ksort($folders);
+	return $folders;
+}
 
 ################## Começo Verdadeiro ########################################################
 

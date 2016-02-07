@@ -466,119 +466,82 @@ echo "</TABLE></P>\n";
 </TABLE>
 <?php } ?>
 
-<?php  if ($op==6) {?>
-<?php
-$post=array();
-if (is_dir($datadir)) {
-   if ($dh = opendir($datadir)) 
-   {
-       $i=0;
-       while (($file = readdir($dh)) !== false) {
-        if (($file!='.')&&($file!='..')&&(is_dir("$datadir/$file")))
-	{
-	  $post[$i]=$file;
-	  $i++;
-	}
-      }
-       closedir($dh);
-   }
-}
+<?php  if ($op==6) {
+	$folders = collect($datadir);
 ?>
 <!-- Pastas e Arquivos -->
 <P CLASS="SECTION">Pastas e Arquivos</P>
 
-<P><TABLE CLASS="tabelareversa">
- <FORM ACTION="EDfile.php" METHOD="POST">
- <input type="hidden" name="action" value="criarpasta">
-  <TR><TD COLSPAN=3 CLASS=SUBSECTION>Criar uma nova pasta</TD></TR>
-  <TR><TD COLSPAN=2>Nome da pasta: <INPUT NAME="tbpasta"></TD>
-      <TD ALIGN="RIGHT"><input type="submit" value="Criar Pasta"></TD></TR>
- </FORM>
-</TABLE></P>
+<FORM ACTION="EDfile.php" METHOD="POST">
+	<input type="hidden" name="action" value="criarpasta">
+	<TABLE CLASS="tabelareversa"  CELLPADDING=3 WIDTH="850" ALIGN="CENTER">
+		<TR><TD COLSPAN=3 CLASS=SUBSECTION>Criar uma nova pasta</TD></TR>
+		<TR><TD COLSPAN=2>Nome da pasta: <INPUT NAME="tbpasta"></TD>
+			<TD ALIGN="RIGHT"><input type="submit" value="Criar Pasta"></TD></TR>
+	</TABLE>
+</FORM>
 
 <P CLASS="SECTION">
-   <?php 
-    if(count($post)>0) {
-      echo "Editar arquivos e pastas atuais ";
-      sort($post);
-    } else
-      echo "Nenhuma pasta criada";
-   ?>
+<?php 
+	echo (count($folders) > 0) ? "Editar arquivos e pastas atuais " : "Nenhuma pasta criada";
+?>
 </P>
 
 <?php
-foreach($post as $i => $p)
-{ ?>
-<P><TABLE class=tabela>
- <TR>
-   <TD><FONT COLOR="#284d49"><B>Pasta</B>: <?php echo $p ?></FONT></TD>
-   <TD COLSPAN=2 BGCOLOR="#ffffff" ALIGN="RIGHT">
-    <FORM ACTION="EDfile.php" METHOD="POST">
-     <input type="hidden" name="action" value="apagarpasta">
-     <input type="hidden" name="tbpasta" value="<?php echo $p ?>">
-     apagar &quot;<?php echo $p ?>&quot; e todo seu conteúdo ?&nbsp;&nbsp;&nbsp;
-     <input type="checkbox" name="tbcheck">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="submit" value="apaga">
-    </FORM>
-   </TD>
- </TR>
- <TR>
-   <TD COLSPAN=3 VALIGN="CENTER">
-    <FORM ACTION="EDfile.php" METHOD="POST" ENCTYPE="multipart/form-data">
-      <input type="hidden" name="action" value="addarquivo">
-      <input type="hidden" name="tbpasta" value="<?php echo $p ?>">
-      <INPUT type="file" size=24 NAME="tbarquivo" title="marcelo">
-      <input type="submit" value="Adicionar arquivo para pasta: <?php echo $p ?>">
-   </TD>
-    </FORM>
-   </TD>
- </TR>
- 
- <?php
- if ($dh = opendir("$datadir/$p")) 
- {
-  while (($f = readdir($dh)) !== false) 
-  {
-   if (($f!='.')&&
-       ($f!='..')&&
-       (substr($f,strlen($f)-11,11)!=='_comentario')
-      )
-   {
-    if (is_file("$datadir/$p/$f"."_comentario"))
-    {
-       $comentario=file("$datadir/$p/$f"."_comentario");
-       $comentario=rtrim($comentario[0]);
-    } else 
-       $comentario="";
-    ?>
-     <TR BGCOLOR="#ffffff">
-      <TD ALIGN="CENTER"><?php echo $f ?></TD>
-      <TD BGCOLOR="#ffffff" ALIGN="LEFT">
-       <FORM ACTION="EDfile.php" METHOD="POST">
-        <input type="hidden" name="action" value="comentario">
-        <input type="hidden" name="tbpasta" value="<?php echo $p?>">
-        <input type="hidden" name="tbarquivo" value="<?php echo $f?>">
-        <input name="tbcomentario" size=33 value="<?php echo $comentario ?>">
-        <input type="submit" value="alterar">
-       </FORM>
-      </TD>
-      <TD ALIGN="RIGHT">
-       <FORM ACTION="EDfile.php" METHOD="POST">
-        <input type="hidden" name="action" value="delarquivo">
-        <input type="hidden" name="tbpasta" value="<?php echo $p?>">
-        <input type="hidden" name="tbarquivo" value="<?php echo $f?>">
-        Apagar ?<input type="checkbox" name="tbcheck">
-        <input type="submit" value="apaga">
-       </FORM>
-      </TD>
-     </TR>
-    <?php
-   }
-  }
- }
-echo "</TABLE></P>";
-} 
-?>
+foreach($folders as $fpath => $folder) { ?>
+<TABLE class=tabela CELLPADDING=3 WIDTH="850" ALIGN="CENTER">
+	<TR>
+		<FORM ACTION="EDfile.php" METHOD="POST">
+		<TD><FONT COLOR="#284d49"><B>Pasta</B>: <?php echo $fpath ?></FONT></TD>
+		<TD COLSPAN=2 BGCOLOR="#ffffff" ALIGN="RIGHT">
+				<INPUT type="hidden" name="action" value="apagarpasta">
+				<INPUT type="hidden" name="tbpasta" value="<?php echo $fpath ?>">
+					Apagar &quot;<?php echo $fpath ?>&quot; e todo seu conteúdo ?
+				<INPUT type="checkbox" name="tbcheck">
+				<INPUT type="submit" value="Apaga">
+		</TD>
+		</FORM>
+	</TR>
+
+	<TR>
+		<FORM ACTION="EDfile.php" METHOD="POST" ENCTYPE="multipart/form-data">
+			<TD COLSPAN=2 VALIGN="MIDDLE" ALIGN="LEFT">
+				<INPUT type="file" size=24 NAME="tbarquivo" title="Escolha um arquivo para carregar na pasta">
+			</TD>
+			<TD COLSPAN=1 VALIGN="MIDDLE" ALIGN="RIGHT">
+				<INPUT type="hidden" name="tbpasta" value="<?php echo $fpath ?>">
+				<INPUT type="hidden" name="action" value="addarquivo">
+				<INPUT type="submit" value="Adiciona à: <?php echo $fpath ?>">
+			</TD>
+		</FORM>
+	</TR>
+
+	<?php foreach($folder as $file) { ?>
+	<TR BGCOLOR="#ffffff">
+		<TD ALIGN="CENTER"><?php echo $file['name'] ?></TD>
+		<FORM ACTION="EDfile.php" METHOD="POST">
+			<TD BGCOLOR="#ffffff" ALIGN="LEFT">
+					<input type="hidden" name="action" value="comentario">
+					<input type="hidden" name="tbpasta" value="<?php echo $fpath?>">
+					<input type="hidden" name="tbarquivo" value="<?php echo $file['realname']?>">
+					<input name="tbcomentario" size=33 value="<?php echo $file['cmt'] ?>">
+					<input type="submit" value="Alterar">
+			</TD>
+		</FORM>
+		
+		<FORM ACTION="EDfile.php" METHOD="POST">
+			<TD ALIGN="RIGHT">
+					<input type="hidden" name="tbpasta" value="<?php echo $fpath ?>">
+					<input type="hidden" name="tbarquivo" value="<?php echo $file['realname'] ?>">
+						Apagar ?<input type="checkbox" name="tbcheck">
+					<input name="action" type="submit" value="Apagar">
+					&brvbar;&nbsp;<input name="action" type="submit" value="<?php echo ($file['hidden']) ? "Mostrar": "Esconder" ?>">
+			</TD>
+		</FORM>
+	</TR>
+	<?php } ?>
+</TABLE>
+<?php } ?>
 
 <?php } # FIM DO OP==6 ?>
 
@@ -587,39 +550,56 @@ echo "</TABLE></P>";
 <!-- LINKS -->
 <P CLASS="SECTION">Links sugeridos</P>
 
-<TABLE  CLASS="tabelareversa" width="560">
 <FORM ACTION="EDlink.php" METHOD="POST">
- <TR><TD>Descrissão:</TD><TD colspan=2><input name="nome" size=50></TD></TR>
- <TR><TD>Endereço:</TD><TD><input name="endereco" value="http://" size=50></TD><TD ALIGN="RIGHT"><input type="submit" name="action" value="Adicionar"></TD></TR>
+	<TABLE  CLASS="tabelareversa" width="560" ALIGN="CENTER">
+		<TR>
+			<TD WIDTH=120>Nome do Link:</TD>
+			<TD><input name="nome" size="65"></TD>
+		</TR>
+		<TR>
+			<TD WIDTH=120>Endereço:</TD>
+			<TD><input name="endereco" value="http://" size="65"></TD>
+		</TR>
+		<TR>
+			<TD ALIGN="CENTER" COLSPAN=2>
+				<BR>
+				<input type="submit" name="action" value="Adicionar">
+				<BR><BR>
+				</TD>
+		</TR>
+	</TABLE>
 </FORM>
-</TABLE>
-<BR>
-<TABLE class=tabela  width="560">
- <?php
-  if (is_file($linkfile))
-  {
-   $lists=file($linkfile);
-  } else 
-      $lists=array();
-      
-  foreach($lists as $item)
-  {
-   list($id,$nome,$endereco)=split("\t",$item,3);
-   echo "<FORM ACTION=\"EDlink.php\" METHOD=\"POST\">
-  <input type=\"hidden\" name=\"id\" VALUE=\"$id\">
-  <TR>
-   <TD>$nome - [$endereco]</TD>
-   <TD ALIGN=\"RIGHT\"><input type=\"submit\" name=\"action\" value=\"Apagar\"></TD>
-  </TR>
- </FORM>\n";
-  }?>  
-</TABLE>
 
+<BR>
+<TABLE class=tabela  width="560" ALIGN="CENTER">
+	<?php
+	$lists = (is_file($linkfile)) ? file($linkfile) : array();
+	foreach($lists as $item) {
+		list($id, $nome, $endereco) = split("\t",trim($item),3);
+	?>
+	<FORM ACTION="EDlink.php" METHOD="POST">
+		<input type="hidden" name="id" VALUE="<?php echo $id ?>">
+		<TR>
+			<TD><?php echo $nome?></TD>
+			<TD>&dash;</TD>
+			<TD>[<?php echo $endereco ?>]</TD>
+			<TD ALIGN="RIGHT">
+				<input type="submit" name="action" value="Apagar">
+			</TD>
+		</TR>
+	</FORM>
+	<?php } ?>
+</TABLE>
 <?php } # FIM DO OP==7 ?>
 
 <?php  if ($op==0) {?>
- <P CLASS=SECTION> Bem vindo ao site de administração da página da disciplina <I><?php echo $nomedadisciplina ?></I></P>
- <P CLASS=SECTION> Sigla: <I><?php echo $sigladadisciplina ?></I> </P>
+<BR>
+	<P CLASS=SECTION> Bem vindo ao site de administração da página da disciplina</P>
+	<P ALIGN=CENTER><I><?php echo $nomedadisciplina ?></I></P>
+	<P CLASS=SECTION> Sigla:</P>
+	<P ALIGN=CENTER><I><?php echo $sigladadisciplina ?></I></P>
+<BR>
+<BR>
 <?php } ?>
 
 <HR NOSHADE>

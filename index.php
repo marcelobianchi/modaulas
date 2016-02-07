@@ -174,7 +174,7 @@
 		echo "<UL>\n";
 		$lists=file($linkfile);
 		foreach($lists as $item) {
-			list($getid,$getnome,$getendereco)=split("\t",$item,3);
+			list($getid,$getnome,$getendereco)=split("\t",trim($item),3);
 			echo "<LI><A HREF=\"$getendereco\" TARGET=\"_NEW\" TITLE=\"$getnome\">$getnome</A>";
 		}
 		echo "</UL>\n";
@@ -188,59 +188,17 @@
 	<TR><TD>
 	<P CLASS=SECTION>Apostilas</P>
 	<?php
-	$folders = array();
-	if (is_dir($datadir) && ($dh = opendir($datadir))) {
-		while (($file = readdir($dh)) !== false) {
-			if ($file == '.') continue;
-			if ($file == '..') continue;
-			if (!is_dir("$datadir/$file")) continue;
-			array_push($folders, $file);
-		}
-		closedir($dh);
-	}
-	
-	sort($folders);
-	
-	foreach($folders as $folder) {
-		?>
+	$folders = collect($datadir);
+	foreach($folders as $fpath => $folder) {
+	?>
 		<TABLE WIDTH="800" CELLPADDING=2>
 		<TR>
 			<TD WIDTH="50"><B>Pasta</B>:</TD>
-			<TD CLASS=tabelareversa COLSPAN=4><?php echo $folder ?></TD>
+			<TD CLASS=tabelareversa COLSPAN=4><?php echo $fpath ?></TD>
 		</TR>
-
 		<?php
-		$files = array();
-		if ($dh = opendir("$datadir/$folder")) {
-			while (($f = readdir($dh)) !== false) {
-				if ($f == ".") continue;
-				if ($f == "..") continue;
-				if (strrpos($f, "_comentario") !== False) continue;
-				
-				$comentario = $f;
-				
-				if (is_file("$datadir/$folder/$f"."_comentario")) {
-					$comentario=file("$datadir/$folder/$f"."_comentario");
-					$comentario=rtrim($comentario[0]);
-				}
-
-				$fsize = filesize("$datadir/$folder/$f");
-				$fsize = size_translate($fsize);
-				list($lixo,$mime) = split("/",mime_content_type("$datadir/$folder/$f"),2);
-				$mime = strtoupper($mime);
-
-				array_push($files, array(
-					'cmt'  => $comentario,
-					'path' => "$datadir/$folder/$f",
-					'mime' => $mime,
-					'fs'   => $fsize
-				));
-			}
-		}
-
-		uasort($files, 'filecmp');
-
-		foreach($files as $file) {
+		foreach($folder as $file) {
+			if ($file['hidden']) continue;
 		?>
 			<TR>
 				<TD WIDTH="50">&nbsp;</TD>
