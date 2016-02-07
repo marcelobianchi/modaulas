@@ -387,12 +387,12 @@ echo "</TABLE></P>\n";
 
  echo "<TR ALIGN=\"CENTER\">\n";
  
- for($i=0;$i<$wday;$i++,$wd++)
+ for($i=0; $i<$wday; $i++,$wd++)
    echo "  <TD>&nbsp;</TD>\n";
  
- for($i=0;$i<$maxday;$i++,$wd++)
+ for($i=0; $i<$maxday; $i++,$wd++)
  {
-   echo "  <TD>".($j*7+$i+1)."</TD>\n";
+   echo "  <TD>".($i+1)."</TD>\n";
    if ($wd==6)
    {
      echo "</TR>\n";
