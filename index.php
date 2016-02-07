@@ -6,7 +6,7 @@
 ?>
 <HEAD>
 	<title><?php echo strtoupper($sigladadisciplina)." - ".ucwords($nomedadisciplina) ?></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 	<LINK rel="StyleSheet" href="style.css" type="text/css">
 </HEAD>
@@ -14,12 +14,12 @@
 <BODY CLASS="ADM">
 
 <!-- header -->
-<TABLE WIDTH="100%" CLASS=TABELA>
+<TABLE WIDTH="100%" CLASS=TABELA CELLPADDING=15>
 <TR>
 	<TD WIDTH=200>&nbsp;</TD>
 	<TD><P ALIGN="CENTER">Site da disciplina</P>
 		<P CLASS=TOP> <?php echo $nomedadisciplina ?></P>
-		<P CLASS=SECTION> <?php echo $sigladadisciplina ?></P>
+		<P CLASS=SECTION><?php echo $sigladadisciplina ?></P>
 	</TD>
 	<TD VALIGN="BOTTOM" ALIGN="RIGHT" WIDTH=200><A HREF="adm.php">
 		<FONT SIZE=-1><I>Administração</I></FONT></A>
@@ -73,16 +73,9 @@
 		</TD></TR>
 	</TABLE>
 
-	</TD></TR>
-</TABLE>
-
-<!-- ementa -->
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING=10 CELLSPACING=0>
-	<TR><TD>
-	<P CLASS="SECTION">Ementa da disciplina</P>
-	<UL>
-	<LI>[<A HREF="GETementa.php" TARGET="_NEW">HTML</A>]
-	</UL>
+	<?php if (is_file($ementafile)) {?>
+		<P ALIGN="CENTER"><A HREF="GETementa.php" TARGET="_NEW">Ementa da disciplina</A></P>
+	<?php } ?>
 	</TD></TR>
 </TABLE>
 
@@ -135,67 +128,60 @@
 </TABLE>
 
 <!-- calendário -->
-<?php
-if (is_file($calfile))
-	$in=file($calfile);
-else
-	$in="";
-?>
-
+<?php if (is_file($calfile)) { ?>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING=10 CELLSPACING=0>
 	<TR><TD>
 	<P CLASS=SECTION>Calendário</P>
-	<I><?php echo "Hoje é".utf8_encode(strftime(" %A, %d de %B de %Y\n",time())); ?></I>
+	<I><?php echo "Hoje é".(strftime(" %A, %d de %B de %Y\n",time())); ?></I>
 	<PRE>
-	<?php
-	$maxday=strtotime("+1 month");
-	$minday=strtotime("-1 day");
-	if (is_file($calfile))
-		$in=file($calfile);
-	else
-		$in=array();
+<?php
+	$maxday = strtotime("+1 month");
+	$minday = strtotime("-1 day");
+	$in     = file($calfile);
+
 	foreach($in as $i => $a) { 
 		list($dia,$cmp)=split("\|",rtrim($a),2);
 		if(($dia<$maxday)&&($dia>$minday))
-			echo strftime("[%a: %d/%b]",$dia)," $cmp\n";
+			echo strftime("    [%a: %d/%b]",$dia)," $cmp\n";
 	}
-	?>
+?>
 	</PRE>
 	</TD></TR>
 	<TR><TD ALIGN="RIGHT"><A HREF="GETcalendario.php" TARGET="_NEW">ver todo o calendário</A></TD></TR>
 </TABLE>
+<?php  } ?>
 
 <!-- Quadro de avisos -->
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING=10 CELLSPACING=0>
-	<TR><TD>
-	<P CLASS=SECTION>Quadro de Avisos</P>
-	<?php if(is_file($avisofile)) { ?>
-		<CENTER>
-		<IFRAME FRAMEBORDER=1 WIDTH="80%" ALIGN=middle scrolling=auto height=200 src="GETavisos.php">
-		O seu browser não suporta IFRAMES visualize os <A HREF="GETavisos.php">avisos aqui</A>.
-		</IFRAME>
-		</CENTER>
-	<?php } ?>
-	</TD></TR>
-</TABLE>
+<?php if(is_file($avisofile)) { ?>
+	<TABLE BORDER="1" WIDTH="100%" CELLPADDING=10 CELLSPACING=0>
+		<TR><TD>
+		<P CLASS=SECTION>Quadro de Avisos</P>
+			<CENTER>
+				<IFRAME FRAMEBORDER=1 WIDTH="80%" ALIGN=middle scrolling=auto height=200 src="GETavisos.php">
+				O seu browser não suporta IFRAMES visualize os <A HREF="GETavisos.php">avisos aqui</A>.
+				</IFRAME>
+			</CENTER>
+		</TD></TR>
+	</TABLE>
+<?php } ?>
 
 <!-- Links -->
+<?php if(is_file($linkfile)) { ?>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING=10 CELLSPACING=0>
 	<TR><TD>
 	<P CLASS=SECTION>Links Úteis</P>
-	<?php
-		if(is_file($linkfile)) {
-			echo "<UL>\n";
-			$lists=file($linkfile);
-			foreach($lists as $item) {
-				list($getid,$getnome,$getendereco)=split("\t",$item,3);
-				echo "<LI><A HREF=\"$getendereco\" TARGET=\"_NEW\" TITLE=\"$getnome\">$getnome</A>";
-			}
-			echo "</UL>\n";
+		<?php
+		echo "<UL>\n";
+		$lists=file($linkfile);
+		foreach($lists as $item) {
+			list($getid,$getnome,$getendereco)=split("\t",$item,3);
+			echo "<LI><A HREF=\"$getendereco\" TARGET=\"_NEW\" TITLE=\"$getnome\">$getnome</A>";
 		}
-	?>
+		echo "</UL>\n";
+		?>
 	</TD></TR>
 </TABLE>
+<?php } ?>
 
 <!-- Apostilas -->
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING=10 CELLSPACING=0>
