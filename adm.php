@@ -235,7 +235,7 @@ for($horario=0;$horario<count($tablehorario);$horario++)
 <!-- EMENTA -->
 <P CLASS="SECTION">Ementa do Curso</P>
 
-<TABLE BORDER CELLPADDING=0 CELSPACING=0 WIDTH="925" ALIGN="CENTER" CLASS="tabela">
+<TABLE BORDER="1" CELLPADDING=0 CELLSPACING=0 WIDTH="925" ALIGN="CENTER" CLASS="tabela">
 <TR>
  <TD VALIGN="TOP">
    <IFRAME SRC="GETementa.php" WIDTH="400" HEIGHT="535"></IFRAME> 
@@ -248,7 +248,8 @@ for($horario=0;$horario<count($tablehorario);$horario++)
   <TR><TD ALIGN="RIGHT"><B>Bibliografia do Curso</B> (1 bibliografia por
 linha não quebre a linha no meio de uma mesma referência)</TD></TR>
   <TR><TD ALIGN="RIGHT"><TEXTAREA NAME="tbbibliografia" rows=10 cols=55></TEXTAREA></TD></TR>
-  <TR><TD ALIGN="RIGHT"><INPUT TYPE="SUBMIT" VALUE="Alterar"></TD></TR>
+  <TR><TD ALIGN="RIGHT"><INPUT TYPE="SUBMIT" VALUE="Alterar"><BR><FONT SIZE=-1>(Para remover a Ementa atual utilize o botão alterar 
+  sem <BR>preencher nenhum conteúdo nos campos acima)</FONT></TD></TR>
  </TABLE>
  </FORM>
  </TD>
