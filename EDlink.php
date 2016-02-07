@@ -41,7 +41,7 @@ switch($action)
  break; 
 
  default:
-   erro('Entrada inválida !');
+   erro('Entrada inválida !', 7);
  break;
 }
 

@@ -131,7 +131,7 @@ function changevariavel ($who, $value){
 }
 
 
-function erro($message){
+function erro($message, $pos = 0){
 
 echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
@@ -145,6 +145,7 @@ echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <BODY>';
 echo "
 <P CLASS=ERRO> $message </P>
+<p align='center'><a href='adm.php?op=$pos'>Go Back</a></p>
 </BODY>
 </HTML>";
 exit();
@@ -159,7 +160,7 @@ function aviso($message,$pos){
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
  <LINK rel="StyleSheet" href="style.css" type="text/css">
- <meta http-equiv="refresh" content="2; URL=adm.php?op=<?php echo $pos ?>">
+ <meta http-equiv="refresh" content="0; URL=adm.php?op=<?php echo $pos ?>">
 </HEAD>
 
 <BODY>

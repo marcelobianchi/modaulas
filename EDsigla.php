@@ -16,10 +16,10 @@ switch($action)
    $tbsigla=$_POST['tbsigla'];
 
    if (!strcmp($tbdisciplina,"")) 
-     erro("Voce deve entrar o nome da Disciplina");
+     erro("Voce deve entrar o nome da Disciplina", 1);
 
    if (!strcmp($tbsigla,""))
-     erro("Voce deve entrar a sigla da Disciplina");
+     erro("Voce deve entrar a sigla da Disciplina", 1);
 
    changevariavel(nomedadisciplina,$tbdisciplina);
    changevariavel(sigladadisciplina,$tbsigla);

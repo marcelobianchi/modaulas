@@ -7,9 +7,9 @@ $action=$_POST['action'];
 switch($action)
 {
  case "addaviso":
- $tbavisotitulo=(isset($_POST['tbavisotitulo']))?$_POST['tbavisotitulo']:erro('Requisição incompleta !');
- $tbaviso=(isset($_POST['tbaviso']))?$_POST['tbaviso']:erro('Requisição incompleta !');
- if (strcmp($tbaviso,"")==0) erro('Requisição incompleta !');
+ $tbavisotitulo=(isset($_POST['tbavisotitulo']))?$_POST['tbavisotitulo']:erro('Requisição incompleta !', 5);
+ $tbaviso=(isset($_POST['tbaviso']))?$_POST['tbaviso']:erro('Requisição incompleta !', 5);
+ if (strcmp($tbaviso,"")==0) erro('Requisição incompleta !', 5);
 
  if (is_file($avisofile))
    $avisos=file($avisofile);
@@ -18,7 +18,7 @@ switch($action)
 
  $fh=fopen($avisofile,"w");
  if ($fh==NULL) 
-   erro("Não posso gravar $avisofile");
+   erro("Não posso gravar $avisofile", 5);
 
 
  $tbaviso=str_replace(array("\'",'\"'),array("'",'"'),$tbaviso);
@@ -40,11 +40,11 @@ switch($action)
    if (strncmp($tbconfirma,'on',2)==0)
      unlink($avisofile);
    else
-     erro('Voce deve confirmar ação com o CHECKBOX !');
+     erro('Voce deve confirmar ação com o CHECKBOX !', 5);
  break; 
 
  default:
-   erro('Entrada inválida !');
+   erro('Entrada inválida !', 5);
  break;
 }
 
