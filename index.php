@@ -190,6 +190,7 @@
 	<?php
 	$folders = collect($datadir);
 	foreach($folders as $fpath => $folder) {
+		if ($folder['hidden']) continue;
 	?>
 		<TABLE WIDTH="800" CELLPADDING=2>
 		<TR>
@@ -197,7 +198,7 @@
 			<TD CLASS=tabelareversa COLSPAN=4><?php echo $fpath ?></TD>
 		</TR>
 		<?php
-		foreach($folder as $file) {
+		foreach($folder['files'] as $file) {
 			if ($file['hidden']) continue;
 		?>
 			<TR>

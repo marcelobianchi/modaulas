@@ -52,6 +52,51 @@ switch (strtolower($action)) {
 			erro ( "Arquivo não pode ser armazenado, provável erro de mal-configuração do servidor, ou limite de upload ultrapassado !!", 6 );
 	break;
 	
+	case 'mostrar tudo':
+		if ($tbpasta == NULL)
+			erro ('Parâmetros inválidos - pasta não encontrada', 6 );
+		
+		$path =  "$datadir/$tbpasta";
+		if (!is_dir($path))
+			erro ('Pasta é inválida', 6);
+		
+		$dh = opendir($path);
+		while (($file = readdir($dh)) !== false) {
+			if ($file == ".") continue;
+			if ($file == "..") continue;
+			if (strrpos($file, "_comentario") !== False) continue;
+			if (strrpos($file, "_hidden_") === False) continue;
+			
+			$oldname = "$path/$file";
+			$newname = "$path/".(substr($file, 0, strrpos($file, "_hidden_")));
+			
+			rename( $oldname, $newname);
+		}
+		closedir($dh);
+		break;
+	
+	case 'esconder tudo':
+		if ($tbpasta == NULL)
+			erro ('Parâmetros inválidos - pasta não encontrada', 6 );
+		
+		$path =  "$datadir/$tbpasta";
+		if (!is_dir($path))
+			erro ('Pasta é inválida', 6);
+		
+		$dh = opendir($path);
+		while (($file = readdir($dh)) !== false) {
+			if ($file == ".") continue;
+			if ($file == "..") continue;
+			if (strrpos($file, "_comentario") !== False) continue;
+			if (strrpos($file, "_hidden_") !== False) continue;
+			
+			$oldname = "$path/$file";
+			$newname = "$path/$file"."_hidden_".md5(time());
+			rename( $oldname, $newname);
+		}
+		closedir($dh);
+		break;
+	
 	case 'mostrar' :
 		if ($tbpasta == NULL)
 			erro ( 'Parâmetros inválidos - pasta não encontrada', 6 );
@@ -107,6 +152,10 @@ switch (strtolower($action)) {
 			erro ( 'Parâmetros inválidos', 6 );
 		if (! is_file ( "$datadir/$tbpasta/$tbarquivo" ))
 			erro ( 'Arquivo não existe', 6 );
+		
+		if (strrpos($tbarquivo, "_hidden_") !== False) {
+			$tbarquivo = (substr($tbarquivo, 0, strrpos($tbarquivo, "_hidden_")));
+		}
 		
 		if ($tbcomentario !== "") {
 			$fh = fopen ( "$datadir/$tbpasta/$tbarquivo" . "_comentario", "w" );

@@ -274,7 +274,15 @@ function collect($datadir) {
 					);
 				}
 				uasort($files, 'filecmp');
-				$folders[$folder] = $files;
+
+				$hidden = True;
+				foreach($files as $file)
+					if ( ! $file['hidden'] ) $hidden = False;
+
+				$folders[$folder] = array(
+					'files'  => $files,
+					'hidden' => $hidden
+				);
 			}
 			closedir($dhf);
 		}

@@ -491,8 +491,8 @@ echo "</TABLE></P>\n";
 foreach($folders as $fpath => $folder) { ?>
 <TABLE class=tabela CELLPADDING=3 WIDTH="850" ALIGN="CENTER">
 	<TR>
-		<FORM ACTION="EDfile.php" METHOD="POST">
 		<TD><FONT COLOR="#284d49"><B>Pasta</B>: <?php echo $fpath ?></FONT></TD>
+		<FORM ACTION="EDfile.php" METHOD="POST">
 		<TD COLSPAN=2 BGCOLOR="#ffffff" ALIGN="RIGHT">
 				<INPUT type="hidden" name="action" value="apagarpasta">
 				<INPUT type="hidden" name="tbpasta" value="<?php echo $fpath ?>">
@@ -502,40 +502,44 @@ foreach($folders as $fpath => $folder) { ?>
 		</TD>
 		</FORM>
 	</TR>
-
 	<TR>
 		<FORM ACTION="EDfile.php" METHOD="POST" ENCTYPE="multipart/form-data">
 			<TD COLSPAN=2 VALIGN="MIDDLE" ALIGN="LEFT">
+				<INPUT type="submit" value="Adiciona arquivo na pasta: <?php echo $fpath ?>">
 				<INPUT type="file" size=24 NAME="tbarquivo" title="Escolha um arquivo para carregar na pasta">
-			</TD>
-			<TD COLSPAN=1 VALIGN="MIDDLE" ALIGN="RIGHT">
 				<INPUT type="hidden" name="tbpasta" value="<?php echo $fpath ?>">
 				<INPUT type="hidden" name="action" value="addarquivo">
-				<INPUT type="submit" value="Adiciona à: <?php echo $fpath ?>">
 			</TD>
+		</FORM>
+		<FORM ACTION="EDfile.php" METHOD="POST">
+		<TD ALIGN="RIGHT">
+			<INPUT type="hidden" name="tbpasta" value="<?php echo $fpath ?>">
+			<INPUT type="submit" name="action" value="Mostrar Tudo">
+			<INPUT type="submit" name="action" value="Esconder Tudo">
+		</TD>
 		</FORM>
 	</TR>
 
-	<?php foreach($folder as $file) { ?>
+	<?php foreach($folder['files'] as $file) { ?>
 	<TR BGCOLOR="#ffffff">
-		<TD ALIGN="CENTER"><?php echo $file['name'] ?></TD>
+		<TD  WIDTH=170 ALIGN="CENTER"><?php echo $file['name'] ?></TD>
 		<FORM ACTION="EDfile.php" METHOD="POST">
 			<TD BGCOLOR="#ffffff" ALIGN="LEFT">
 					<input type="hidden" name="action" value="comentario">
 					<input type="hidden" name="tbpasta" value="<?php echo $fpath?>">
 					<input type="hidden" name="tbarquivo" value="<?php echo $file['realname']?>">
-					<input name="tbcomentario" size=33 value="<?php echo $file['cmt'] ?>">
+					<input name="tbcomentario" size=55 value="<?php echo $file['cmt'] ?>">
 					<input type="submit" value="Alterar">
 			</TD>
 		</FORM>
 		
 		<FORM ACTION="EDfile.php" METHOD="POST">
-			<TD ALIGN="RIGHT">
+			<TD WIDTH=230 ALIGN="RIGHT">
 					<input type="hidden" name="tbpasta" value="<?php echo $fpath ?>">
 					<input type="hidden" name="tbarquivo" value="<?php echo $file['realname'] ?>">
-						Apagar ?<input type="checkbox" name="tbcheck">
+					<input name="action" type="submit" value="<?php echo ($file['hidden']) ? "Mostrar": "Esconder" ?>">
+					&brvbar;&nbsp;Apagar ?<input type="checkbox" name="tbcheck">
 					<input name="action" type="submit" value="Apagar">
-					&brvbar;&nbsp;<input name="action" type="submit" value="<?php echo ($file['hidden']) ? "Mostrar": "Esconder" ?>">
 			</TD>
 		</FORM>
 	</TR>
