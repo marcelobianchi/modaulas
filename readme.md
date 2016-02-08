@@ -53,7 +53,9 @@ Para instalar o modaulas siga as instruções abaixo:
  Para customizar basta logar na interface de administração, disponível pelo link no canto superior, direito
  da página gerada !
 
-[]'a
+[]'s
+
 Marcelo Bianchi
-¬ A senha padrão para a administração do sistema é 'modaulas'
+
+ > ps. A senha padrão para a administração do sistema é 'modaulas'
 
