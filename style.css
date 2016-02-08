@@ -1,7 +1,7 @@
 body {
-  background: white;
-  color: black;
-  font-family: arial,sans-serif;
+	background: white;
+	color: black;
+	font-family: arial, sans-serif;
 }
 
 table {
@@ -9,83 +9,82 @@ table {
 }
 
 .mastertable {
-    font-size: 11;
-    text-align: center;
+	font-size: 11;
+	text-align: center;
 }
 
-.set { 
-    font-weight: bold;
+.set {
+	font-weight: bold;
 }
 
 .tabela {
 	background-color: #4996ce;
 }
-   
+
 .tabelareversa {
 	background-color: #284d49;
 	color: #ffffff;
 }
 
 .TOP {
-    font-weight: bold; 
-    font-size: 32;
-    text-align: center;
+	font-weight: bold;
+	font-size: 32;
+	text-align: center;
 }
 
 .SECTION {
-    font-weight: bold; 
-    font-size: 22;
-    text-align: center;
+	font-weight: bold;
+	font-size: 22;
+	text-align: center;
 }
 
 .SUBSECTION {
-    font-weight: bold; 
-    font-size: 17;
-    text-align: center;
+	font-weight: bold;
+	font-size: 17;
+	text-align: center;
 }
 
 .SUBSECTION_L {
-    font-weight: bold; 
-    font-size: 17;
-    text-align: left;
+	font-weight: bold;
+	font-size: 17;
+	text-align: left;
 }
 
 .MESSAGE {
-    font-weight: bold; 
-    font-size: 17;
-    text-align: center;
-    color: #00f;
+	font-weight: bold;
+	font-size: 17;
+	text-align: center;
+	color: #00f;
 }
 
 .ERRO {
-    font-weight: bold;
-    font-size: 17;
-    text-align: center;
-    color: #f00;
+	font-weight: bold;
+	font-size: 17;
+	text-align: center;
+	color: #f00;
 }
 
 dt a {
-  font-weight: bold;
-  margin-top: .8em;
+	font-weight: bold;
+	margin-top: .8em;
 }
 
 a:link {
-  color: #00f;
-  background: none;
+	color: #00f;
+	background: none;
 }
 
 a:visited {
-  color: #00f;
-  background: none;
+	color: #00f;
+	background: none;
 }
 
 a:active {
-  color: green;
-  background: #FFD700;
+	color: green;
+	background: #FFD700;
 }
 
 a:hover {
-  color: #00f;
-  background: #fff;
+	color: #00f;
+	background: #fff;
 }
-
