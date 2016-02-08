@@ -5,6 +5,7 @@ body {
 }
 
 table {
+	border-radius: 5px;
 	margin-bottom: 15px;
 }
 
@@ -69,22 +70,18 @@ dt a {
 	margin-top: .8em;
 }
 
-a:link {
-	color: #00f;
-	background: none;
+.tabelareversa a:link,a:visited {
+	color: #fff;
 }
 
-a:visited {
-	color: #00f;
-	background: none;
+.tabelareversa a:hover {
+	color: #aaa;
 }
 
-a:active {
-	color: green;
-	background: #FFD700;
+a:link, a:visited {
+	color: #000;
 }
 
 a:hover {
 	color: #00f;
-	background: #fff;
 }

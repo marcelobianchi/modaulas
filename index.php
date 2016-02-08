@@ -33,31 +33,49 @@
 	<TD>
 	<P CLASS="SECTION">Professores &amp; Monitores</P>
 
-	<TABLE CELLSPACING=0 CELLPADDING=5 WIDTH="100%">
+	<TABLE CELLSPACING=2 CELLPADDING=5 WIDTH="100%">
 	<TR ALIGN="LEFT" VALIGN="TOP" CLASS=tabelareversa>
 	<?php
-		$professores=explode(',',$professores);
-		$p_telefones=explode(',',$p_telefones); 
-		$p_emails=explode(',',$p_email);
-		$p_sala=explode(',',$p_sala);
+		$professores = explode(',',$professores);
+		$p_telefones = explode(',',$p_telefones); 
+		$p_emails    = explode(',',$p_email);
+		$p_sala      = explode(',',$p_sala);
+
+		$monitores   = explode(',',$monitores);
+		$m_telefones = explode(',',$m_telefones);
+		$m_emails    = explode(',',$m_email);
+		$m_sala      = explode(',',$m_sala);
+
+		$m_horario=explode(',',$m_horario);
+
+		$each  = max(count(array_filter($professores)),1) + max(count(array_filter($monitores)),1);
+		$each  = 100 / $each;
 	?>
 	<?php
-	for($i=0;$i < count($professores);$i++)
-		echo "  <TD WIDTH='25%'><FONT SIZE=\"-1\">Prof. Dr. $professores[$i]<BR>"
+	$n = 0;
+	for($i=0; $i < count($professores); $i++) {
+		if ($professores[$i] === "") continue;
+		echo "  <TD WIDTH='$each%'><FONT SIZE=\"-1\">Prof. Dr. $professores[$i]<BR>"
 			.(($p_emails[$i]!='')?"[<A HREF=\"mailto:$p_emails[$i]\">EMAIL</A>] ":'')
 			.(($p_telefones[$i]!='')?"Tel: $p_telefones[$i]":'')."<BR>"
-			.(($p_sala[$i]!='')?"Sala $p_sala[$i]":'')."</FONT></TD>\n";
+			.(($p_sala[$i]!='')?"Sala $p_sala[$i]":'')."</FONT></TD>";
+		$n++;
+	}
+	if ($n == 0) 
+		echo "<TD ALIGN='CENTER' WIDTH='$each%'><FONT SIZE=\"-1\"><BR>&dash;&nbsp;Sem Professor Cadastrado&nbsp;&dash;<BR><BR></TD>";
 
-		$monitores=explode(',',$monitores);
-		$m_telefones=explode(',',$m_telefones); 
-		$m_emails=explode(',',$m_email);
-		$m_sala=explode(',',$m_sala);
-
-		for($i=0;$i < count($monitores);$i++)
-			echo "  <TD><FONT SIZE=\"-1\">Monitor: $monitores[$i]<BR>"
-				.(($m_emails[$i]!='')?"[<A HREF=\"mailto:$m_emails[$i]\">EMAIL</A>] ":'')
-				.(($m_telefones[$i]!='')?"Tel: $m_telefones[$i]":'')."<BR>"
-				.(($m_sala[$i]!='')?"Sala $m_sala[$i]":'')."</FONT></TD>\n"; 
+	$n = 0;
+	for($i=0; $i < count($monitores); $i++) {
+		if ($monitores[$i] === "") continue;
+		echo "  <TD WIDTH='$each%'><FONT SIZE=\"-1\">Monitor: $monitores[$i]<BR>"
+			.(($m_emails[$i]!='')?"[<A HREF=\"mailto:$m_emails[$i]\">EMAIL</A>] ":'')
+			.(($m_telefones[$i]!='')?"Tel: $m_telefones[$i]":'')."<BR>"
+			.(($m_sala[$i]!='')?"Sala $m_sala[$i]":'')."</FONT></TD>"; 
+		$n ++;
+	}
+	if ($n == 0)
+		echo "<TD ALIGN='CENTER' WIDTH='$each%'><FONT SIZE=\"-1\"><BR>&dash;&nbsp;Disciplina sem Monitor&nbsp;&dash;<BR><BR></TD>";
+	
 	?>
 	</TR>
 	</TABLE>
@@ -66,9 +84,12 @@
 		<TR><TD ALIGN="CENTER">
 		<P CLASS="SUBSECTION">Horário da Monitoria</P>
 		<?php
-			$m_horario=explode(',',$m_horario);
-			foreach($m_horario as $i)
-				echo rtrim($i)."<BR>\n";
+			if (count(array_filter($m_horario)) > 0) {
+				foreach($m_horario as $i)
+					echo rtrim($i)."<BR>\n";
+			} else {
+				echo "<P>&dash;&nbsp;<I>Nenhum horário de monitoria cadastrado</I>&nbsp;&dash;</P>";
+			}
 		?>
 		</TD></TR>
 	</TABLE>
@@ -184,11 +205,18 @@
 <?php } ?>
 
 <!-- Apostilas -->
+<?php 
+	$folders = collect($datadir);
+	$n = 0;
+	foreach($folders as $folder)
+		$n += ! $folder['hidden'];
+?>
+
+<?php if ($n > 0) { ?>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING=10 CELLSPACING=0>
 	<TR><TD>
 	<P CLASS=SECTION>Apostilas</P>
 	<?php
-	$folders = collect($datadir);
 	foreach($folders as $fpath => $folder) {
 		if ($folder['hidden']) continue;
 	?>
@@ -216,6 +244,7 @@
 
 </TD></TR>
 </TABLE>
+<?php } # Fim da apostila ?>
 
 <HR NOSHADE>
 
