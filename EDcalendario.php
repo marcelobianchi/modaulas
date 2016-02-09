@@ -30,30 +30,29 @@ switch ($action) {
 	
 	case 'deldata' :
 		$d = array ();
-		$pos = 0;
 		foreach ( $_POST as $i => $p )
-			if (strncmp ( $i, "apaga_", 6 ) == 0) {
-				$d [$pos] = $p;
-				$pos ++;
-			}
+			if (strncmp ( $i, "apaga_", 6 ) == 0)
+				array_push($d, $p);
 		
-		if (is_file ( $calfile )) {
-			$in = file ( $calfile );
-			$fh = fopen ( $calfile, "w" );
-		} else
+		if (count($d) === 0)
+			erro ( "Nenhuma data informada para ser removida", 4 );
+
+		if (!is_file ( $calfile ))
 			erro ( "Não achei o arquivo $calfile", 4 );
+
+		$in = file ( $calfile );
+		$fh = fopen ( $calfile, "w" );
 		
+		$one = 0;
 		foreach ( $in as $i ) {
 			list ( $dia, $cmp ) = split ( "\|", rtrim ( $i ), 2 );
-			$go = 1;
-			foreach ( $d as $data )
-				if ($dia == $data)
-					$go = 0;
-			if ($go == 1)
-				fwrite ( $fh, "$i" );
+			if ( in_array($dia, $d) ) continue;
+			fwrite ( $fh, "$i" );
+			$one ++;
 		}
 		
 		fclose ( $fh );
+		if ($one == 0) unlink($calfile);
 		break;
 	
 	default :

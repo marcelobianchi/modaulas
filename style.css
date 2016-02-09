@@ -9,6 +9,29 @@ table {
 	margin-bottom: 15px;
 }
 
+iframe {
+	border-radius: 5px;
+	margin: 5px;
+	padding: 5px;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+.tituloaviso {
+	font-size: 150%;
+	font-weight: bolder;
+}
+
+.aviso {
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.dataaviso {
+	text-align: right;
+	font-size: 95%;
+	margin-right: 25px;
+}
+
 .mastertable {
 	font-size: 11;
 	text-align: center;
@@ -78,7 +101,7 @@ dt a {
 	color: #aaa;
 }
 
-a:link, a:visited {
+a:link,a:visited {
 	color: #000;
 }
 

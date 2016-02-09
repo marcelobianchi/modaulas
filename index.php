@@ -101,6 +101,12 @@
 </TABLE>
 
 <!-- horário -->
+<?php 
+$stop = True;
+foreach($tabeladehorario as $i) 
+	if ($i) $stop = False;
+if (!$stop) {
+?>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING=10 CELLSPACING=0>
 	<TR><TD>
 	<P CLASS="SECTION">Horário das aulas</P>
@@ -147,6 +153,7 @@
 	</TABLE>
 	</TD></TR>
 </TABLE>
+<?php } ?>
 
 <!-- calendário -->
 <?php if (is_file($calfile)) { ?>
@@ -176,7 +183,7 @@
 <?php if(is_file($avisofile)) { ?>
 	<TABLE BORDER="1" WIDTH="100%" CELLPADDING=10 CELLSPACING=0>
 		<TR><TD>
-		<P CLASS=SECTION>Quadro de Avisos</P>
+			<P CLASS=SECTION>Quadro de Avisos</P>
 			<CENTER>
 				<IFRAME FRAMEBORDER=1 WIDTH="80%" ALIGN=middle scrolling=auto height=200 src="GETavisos.php">
 				O seu browser não suporta IFRAMES visualize os <A HREF="GETavisos.php">avisos aqui</A>.

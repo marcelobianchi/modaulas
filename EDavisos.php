@@ -27,9 +27,9 @@ switch ($action) {
 		$tbaviso       = nl2br ( $tbaviso );
 		
 		if (! empty ( $tbavisotitulo ))
-			fwrite ( $fh, "<P CLASS=\"subsection_l\"><B>$tbavisotitulo</B></P>\n\n" );
-		fwrite ( $fh, "<P>$tbaviso</P>\n\n" );
-		fwrite ( $fh, "<P align=\"right\"><I>Aviso de " . date ( 'd/m/Y - H:i' ) . "</I></P><HR NOSHADE>\n\n" );
+			fwrite ( $fh, "<P CLASS=\"tituloaviso\">$tbavisotitulo</P>\n\n" );
+		fwrite ( $fh, "<P CLASS='aviso'>$tbaviso</P>\n\n" );
+		fwrite ( $fh, "<P CLASS='dataaviso'>Aviso de " . date ( 'd/m/Y - H:i' ) . "</P><HR NOSHADE>\n\n" );
 		fwrite ( $fh, implode ( "\n", $avisos ) );
 		
 		fclose ( $fh );
