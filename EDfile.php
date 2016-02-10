@@ -2,7 +2,7 @@
 include ("funcoes.php");
 if (! authme ())
 	logmein ();
-$action = $_POST ['action'];
+$action = (isset($_POST ['action'])) ? $_POST ['action'] : NULL;
 
 if (! is_writeable ( $datadir ))
 	erro ( "Não posso escrever no diretório $datadir" );

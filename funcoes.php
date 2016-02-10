@@ -249,10 +249,18 @@ function collect($datadir) {
 						$comentario = rtrim ( $comentario [0] );
 					}
 					
+					$items = split("\.", $file);
+					if (count($items) == 1) {
+						$ext = "-n/a-";
+					} else {
+						$ext = $items[count($items)-1];
+					}
+					
 					array_push ( $files, array (
 							'cmt' => $comentario,
 							'path' => "$datadir/$folder/$realfile",
 							'mime' => $mime,
+							'ext'  => $ext,
 							'hidden' => $hidden,
 							'name' => $file,
 							'realname' => $realfile,

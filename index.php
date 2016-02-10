@@ -227,7 +227,7 @@ if (!$stop) {
 	foreach($folders as $fpath => $folder) {
 		if ($folder['hidden']) continue;
 	?>
-		<TABLE WIDTH="800" CELLPADDING=2>
+		<TABLE WIDTH="100%" CELLPADDING=2>
 		<TR>
 			<TD WIDTH="50"><B>Pasta</B>:</TD>
 			<TD CLASS=tabelareversa COLSPAN=4><?php echo $fpath ?></TD>
@@ -238,8 +238,8 @@ if (!$stop) {
 		?>
 			<TR>
 				<TD WIDTH="50">&nbsp;</TD>
-				<TD WIDTH="70"><FONT SIZE="-1">(<?php echo $file['mime'] ?>)</FONT></TD>
-				<TD WIDTH="540" CLASS=TABELA><?php echo $file['cmt'] ?></TD>
+				<TD WIDTH=""><FONT SIZE="-1">(<a title="<?php echo $file['mime']?>"><?php echo $file['ext'] ?></a>)</FONT></TD>
+				<TD WIDTH="" CLASS=TABELA><?php echo $file['cmt'] ?></TD>
 				<TD WIDTH="80" ALIGN="RIGHT"><?php echo $file['fs'] ?></TD>
 				<TD WIDTH="50">[<A HREF="<?php echo $file['path'] ?>">Baixar</A>]</TD>
 			</TR>

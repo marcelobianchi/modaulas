@@ -474,7 +474,7 @@ echo "</TABLE></P>\n";
 
 <FORM ACTION="EDfile.php" METHOD="POST">
 	<input type="hidden" name="action" value="criarpasta">
-	<TABLE CLASS="tabelareversa"  CELLPADDING=3 WIDTH="850" ALIGN="CENTER">
+	<TABLE CLASS="tabelareversa"  CELLPADDING=3 WIDTH="1024" ALIGN="CENTER">
 		<TR><TD COLSPAN=3 CLASS=SUBSECTION>Criar uma nova pasta</TD></TR>
 		<TR><TD COLSPAN=2>Nome da pasta: <INPUT NAME="tbpasta" SIZE=95></TD>
 			<TD ALIGN="RIGHT"><input type="submit" value="Criar Pasta"></TD></TR>
@@ -489,7 +489,7 @@ echo "</TABLE></P>\n";
 
 <?php
 foreach($folders as $fpath => $folder) { ?>
-<TABLE class=tabela CELLPADDING=3 WIDTH="850" ALIGN="CENTER">
+<TABLE class=tabela CELLPADDING=3 WIDTH="1024" ALIGN="CENTER">
 	<TR>
 		<TD><FONT COLOR="#284d49"><B>Pasta</B>: <?php echo $fpath ?></FONT></TD>
 		<FORM ACTION="EDfile.php" METHOD="POST">
@@ -533,7 +533,7 @@ foreach($folders as $fpath => $folder) { ?>
 		</FORM>
 		
 		<FORM ACTION="EDfile.php" METHOD="POST">
-			<TD WIDTH=230 ALIGN="RIGHT">
+			<TD WIDTH=235 ALIGN="RIGHT">
 					<input type="hidden" name="tbpasta" value="<?php echo $fpath ?>">
 					<input type="hidden" name="tbarquivo" value="<?php echo $file['realname'] ?>">
 					<input name="action" type="submit" value="<?php echo ($file['hidden']) ? "Mostrar": "Esconder" ?>">
