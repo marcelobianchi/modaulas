@@ -10,7 +10,7 @@ function filecmp($a, $b) {
 	if ($a ['cmt'] == $b ['cmt']) {
 		return 0;
 	}
-	return ($a ['cmt'] < $b ['cmt']) ? - 1 : 1;
+	return ( strtolower($a ['cmt']) < strtolower($b ['cmt'])) ? - 1 : 1;
 }
 
 function authme($passwd = '') {
@@ -122,6 +122,7 @@ function changevariavel($who, $value) {
 		fwrite ( $fh, '$' . $who . '="' . $value . '"' . ";\n" );
 	
 	fwrite ( $fh, "?>\n" );
+	flush();
 	fclose ( $fh );
 }
 function erro($message, $pos = 0) {

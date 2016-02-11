@@ -3,7 +3,7 @@
   if (!authme()) logmein();
   $op=(isset($_GET['op']))?$_GET['op']:0;
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">                 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <!-- 14/02/2006. Corrigido problema com mês 02 no calendário -->
 
@@ -194,6 +194,10 @@
 <P CLASS="SECTION">Horário</P>
 <P CLASS="SUBSECTION"><?php echo "[".date("M d Y H:i:s")."]" ?></P>
 
+<CENTER>
+<P><B>Atenção</B>, o cache do navegador pode dar a impressão de que o campo não foi alterado.<BR>Para confirmar que o valor foi alterado recarrege a<BR><A HREF="adm.php?op=2">página clicando aqui</A><P>
+</CENTER>
+
 <FORM METHOD="POST" ACTION="EDhorario.php">
 <TABLE  CLASS="tabela" WIDTH="830"  ALIGN="CENTER" CELLPADDING=0 CELLSPACING=0>
  <TR ALIGN="CENTER">
@@ -219,7 +223,7 @@ for($horario=0;$horario<count($tablehorario);$horario++)
  echo "<TR ALIGN=\"CENTER\">\n";
  echo " <TD>$tablehorario[$horario]</TD>\n";
  for($day=0; $day<7;$day++)
-   echo " <TD BGCOLOR=\"#ffffff\"><INPUT ".(($tabeladehorario[(($horario*7)+$day)]==1)?'CHECKED':' ')." TYPE=\"checkbox\" NAME=\"tb".(($horario*7)+$day+1)."\"></TD>\n";
+   echo " <TD BGCOLOR=\"#ffffff\"><INPUT TYPE=\"checkbox\" NAME=\"tb".(($horario*7)+$day+1)."\" ".(($tabeladehorario[(($horario*7)+$day)]==1)?'CHECKED':' ')."></TD>\n";
  echo "</TR>\n\n";
  if (($horario%2==1) && ($horario!=count($tablehorario)-1)) 
      echo "<TR><TD BGCOLOR=\"#ffffff\" COLSPAN=8>&nbsp;</TD></TR>";
@@ -533,7 +537,7 @@ foreach($folders as $fpath => $folder) { ?>
 		</FORM>
 		
 		<FORM ACTION="EDfile.php" METHOD="POST">
-			<TD WIDTH=235 ALIGN="RIGHT">
+			<TD WIDTH=250 ALIGN="CENTER">
 					<input type="hidden" name="tbpasta" value="<?php echo $fpath ?>">
 					<input type="hidden" name="tbarquivo" value="<?php echo $file['realname'] ?>">
 					<input name="action" type="submit" value="<?php echo ($file['hidden']) ? "Mostrar": "Esconder" ?>">
