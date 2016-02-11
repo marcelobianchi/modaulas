@@ -6,13 +6,6 @@ if (! function_exists ( 'mime_content_type' )) {
 	}
 }
 
-function filecmp($a, $b) {
-	if ($a ['cmt'] == $b ['cmt']) {
-		return 0;
-	}
-	return ( strtolower($a ['cmt']) < strtolower($b ['cmt'])) ? - 1 : 1;
-}
-
 function authme($passwd = '') {
 	session_start ();
 	global $mysetedpassword, $instanceID;
@@ -268,7 +261,7 @@ function collect($datadir) {
 							'fs' => $fsize 
 					) );
 				}
-				uasort ( $files, 'filecmp' );
+				uasort ( $files, 'strcasecmp' );
 				
 				$hidden = True;
 				foreach ( $files as $file )
@@ -283,7 +276,7 @@ function collect($datadir) {
 			closedir ( $dhf );
 		}
 	}
-	ksort ( $folders );
+	uksort ($folders, 'strcasecmp');
 	return $folders;
 }
 

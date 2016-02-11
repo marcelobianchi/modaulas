@@ -238,7 +238,7 @@ if (!$stop) {
 		?>
 			<TR>
 				<TD WIDTH="50">&nbsp;</TD>
-				<TD WIDTH=""><FONT SIZE="-1">(<a title="<?php echo $file['mime']?>"><?php echo $file['ext'] ?></a>)</FONT></TD>
+				<TD WIDTH="100"><FONT SIZE="-1">(<a title="<?php echo $file['mime']?>"><?php echo $file['ext'] ?></a>)</FONT></TD>
 				<TD WIDTH="" CLASS=TABELA><?php echo $file['cmt'] ?></TD>
 				<TD WIDTH="80" ALIGN="RIGHT"><?php echo $file['fs'] ?></TD>
 				<TD WIDTH="50">[<A HREF="<?php echo $file['path'] ?>">Baixar</A>]</TD>
