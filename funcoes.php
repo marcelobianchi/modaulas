@@ -6,6 +6,12 @@ if (! function_exists ( 'mime_content_type' )) {
 	}
 }
 
+function namecmp($a, $b) {
+	$va = (string)$a['cmt'];
+	$vb = (string)$b['cmt'];
+	return strcasecmp($va, $vb);
+}
+
 function authme($passwd = '') {
 	session_start ();
 	global $mysetedpassword, $instanceID;
@@ -261,7 +267,7 @@ function collect($datadir) {
 							'fs' => $fsize 
 					) );
 				}
-				uasort ( $files, 'strcasecmp' );
+				uasort ( $files, 'namecmp' );
 				
 				$hidden = True;
 				foreach ( $files as $file )
