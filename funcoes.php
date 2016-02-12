@@ -6,6 +6,10 @@ if (! function_exists ( 'mime_content_type' )) {
 	}
 }
 
+function checku($string) {
+	return ((mb_check_encoding($string)) ? $string : mb_convert_encoding($str, mb_internal_encoding(), "auto"));
+}
+
 function namecmp($a, $b) {
 	$va = (string)$a['cmt'];
 	$vb = (string)$b['cmt'];

@@ -478,6 +478,7 @@ echo "</TABLE></P>\n";
 
 <FORM ACTION="EDfile.php" METHOD="POST">
 	<input type="hidden" name="action" value="criarpasta">
+	<P ALIGN=CENTER><B>Atenção</B>:<BR> Espaços, acentos e outros símbolos em nome de arquivos ou pastas serão<BR> eliminados durante o upload</P>
 	<TABLE CLASS="tabelareversa"  CELLPADDING=3 WIDTH="1024" ALIGN="CENTER">
 		<TR><TD COLSPAN=3 CLASS=SUBSECTION>Criar uma nova pasta</TD></TR>
 		<TR><TD COLSPAN=2>Nome da pasta: <INPUT NAME="tbpasta" SIZE=95></TD>
