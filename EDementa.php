@@ -8,8 +8,8 @@ $tbbibliografia = isset($_POST['tbbibliografia']) ? $_POST['tbbibliografia'] : "
 $tbementa       = str_replace(array("\'",'\"'),array("'",'"'),$tbementa);
 $tbbibliografia = str_replace(array("\'",'\"'),array("'",'"'),$tbbibliografia);
 
-$tbementa       = htmlentities($tbementa, ENT_QUOTES);
-$tbbibliografia = htmlentities($tbbibliografia, ENT_QUOTES);
+$tbementa       = htmlentities($tbementa, ENT_QUOTES, "UTF-8");
+$tbbibliografia = htmlentities($tbbibliografia, ENT_QUOTES, "UTF-8");
 
 $tbementa       = nl2br($tbementa);
 

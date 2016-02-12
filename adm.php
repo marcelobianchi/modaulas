@@ -52,6 +52,10 @@
 <HR NOSHADE>
 </CENTER>
 
+<?php  if ($op==-1) {
+	debugsystem();
+} ?>
+
 <?php  if ($op==1) {?>
 <!-- NOME E SIGLA -->
 

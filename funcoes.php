@@ -6,6 +6,23 @@ if (! function_exists ( 'mime_content_type' )) {
 	}
 }
 
+function debugsystem() {
+	# Show system encoding
+	echo "<P>"."System mb encoding is: ".(mb_internal_encoding())."</P>";
+	
+	# Show system locale
+	$variables = (split(";", setlocale("LC_ALL", 0)));
+	echo "<P>"."System locale is:</P>";
+	echo "<PRE>";
+	var_dump($variables);
+	echo "</PRE>";
+
+	# Test Locales
+	foreach(array('pt_BR.UTF8', 'pt_BR.ISO_8859_1', 'pt_BR', 'ptb' ) as $loc)
+		if (!setlocale ( LC_TIME, $loc))
+			echo "<P> Cannot set locale to '".$loc."' </P>";
+}
+
 function checku($string) {
 	return ((mb_check_encoding($string)) ? $string : mb_convert_encoding($str, mb_internal_encoding(), "auto"));
 }
