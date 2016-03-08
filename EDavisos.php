@@ -23,7 +23,8 @@ switch ($action) {
 		
 		$tbaviso       = str_replace ( array ("\'", '\"'), array ("'", '"'), $tbaviso );
 		$tbavisotitulo = str_replace ( array ("\'", '\"'), array ("'", '"'), $tbavisotitulo );
-		$tbaviso       = htmlentities ( $tbaviso, ENT_QUOTES );
+		$tbavisotitulo = htmlentities ( $tbavisotitulo, ENT_QUOTES, "UTF-8" );
+		$tbaviso       = htmlentities ( $tbaviso, ENT_QUOTES, "UTF-8" );
 		$tbaviso       = nl2br ( $tbaviso );
 		
 		if (! empty ( $tbavisotitulo ))
