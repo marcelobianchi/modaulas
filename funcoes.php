@@ -307,6 +307,21 @@ function collect($datadir) {
 	return $folders;
 }
 
+function set_htaccess( $dirName ) {
+	if( is_dir($dirName) && ( !file_exists( $dirName . '/.htaccess' ) ) ) {
+		$handle = fopen( $dirName . '/.htaccess', 'w' );
+		if( $handle == null ) {
+			erro( 'Problema de permiss&atilde;o no diret&oacute;rio ' . $dirName );
+		}
+		fwrite ( $handle, 'Options -Indexes' );
+		fclose( $handle );
+
+		return true;
+	}
+
+	erro( $dirName . ' n&atilde;o existe.' );
+}
+
 // ################ Começo Verdadeiro ########################################################
 
 $tablehorario = array (
@@ -357,5 +372,7 @@ if (! isset ( $mysetedpassword ) || empty ( $mysetedpassword )) {
 if (isset ( $tabeladehorario )) {
 	$tabeladehorario = explode ( ',', $tabeladehorario );
 }
+
+set_htaccess($datadir);
 
 ?>
